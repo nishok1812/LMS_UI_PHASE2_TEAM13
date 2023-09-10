@@ -92,98 +92,98 @@ Feature: Program
       | Program Description |
       | Program Status      |
 
-  @ValidatingtheSearchwithunrelatedkeyword16
+  @SearchFunctionality
   Scenario: Validating the Search with unrelated keyword
     Given:  Admin is on Manage Program Page
     When: Admin enters the keywords not present in the data table on the Search box 
     Then: Admin should see zero entries on the data table
 
 
-  @ValidateProgramDetailsPopupwindow17
+  @ValidateNewProBtn
   Scenario: Validate Program Details Popup window
     Given: Admin is on Manage Program Page
     When: Admin clicks <A New Program>button
     Then: Admin should see a popup open for Program details with empty form along with <SAVE> and <CANCEL> button and Close(X) Icon on the top right corner of the window
 
 
-  @18
+  @ValidateAddProWindow
   Scenario: Validate input fields and their text boxes in Program details form
     Given: Admin is on Manage Program Page
     When: Admin clicks <A New Program>button
     Then: Admin should see two input fields and their respective text boxes in the program details window
 
 
-  @19
+  @ValidateAddProWindow
   Scenario: Validate radio button for Program Status
     Given: Admin is on Manage Program Page
     When: Admin clicks <A New Program>button
     Then: Admin should see two radio button for Program Status
 
 
-  @20
+  @ValidateAddProgram
   Scenario: Empty form submission
     Given: Admin is on "Program Details" Popup window
     When: Admin clicks <Save>button without entering any data
     Then: Admin gets a Error message alert
 
 
-  @21
+  @ValidateAddProgram
   Scenario: Enter only Program Name
     Given: Admin is on "Program Details" Popup window
     When: Admin enters only<Program Name> in text box and clicks Save button
     Then: Admin gets a message alert 'Description is required'
 
 
-  @22
+  @ValidateAddProgram
   Scenario: Enter only Program Description
     Given: Admin is on "Program Details" Popup window
     When: Admin enters only<Program description> in text box and clicks Save button
     Then: Admin gets a message alert 'Name is required'
 
 
-  @23
+  @ValidateAddProgram
   Scenario: Select Status only
     Given:  Admin is on "Program Details" Popup window
     When: Admin selects only Status and clicks Save button
     Then: Admin gets a message alert 'Name and Description required'
 
 
-  @24
+  @ValidateAddProgram
   Scenario: Validate invalid values on the text column
     Given: Admin is on "Program Details" Popup window
     When: Admin enters only numbers or special char in name and desc column
     Then: Admin gets a Error message alert
 
 
-  @25
+  @ValidateAddProgram
   Scenario: Validate Cancel/Close(X) icon on Program Details form
     Given: Admin is on "Program Details" Popup window
     When: Admin clicks Cancel/Close(X) Icon on Program Details form
     Then: Program Details popup window should be closed without saving
 
 
-  @26
+  @ValidateAddProgram
   Scenario: Validate Save button on Program Details form
     Given:   Admin is on "Program Details" Popup window
     When: Enter all the required fields with valid values and click Save button
     Then: Admin gets a message "Successful Program Created" alert and able to see the new program added in the data table
 
 
-  @27
+  @ValidateAddProgram
   Scenario: Validate Cancel button on Program Details form
     Given: Admin is on "Program Details" Popup window
     When: Admin clicks <Cancel>button 
     Then: Admin can see the Program details popup disappears without creating any program
 
 
-  @28
+  @EditProgram
   Scenario: Validate Edit Feature
     Given: Admin is on Manage Program Page 
     When: Admin clicks <Edit> button on the data table for any row
     Then: Admin should see a popup open for Program details to edit
 
 
-  @29
+  @EditProgram
   Scenario: Edit Program Name
     
     Given: Admin is on Program Details Popup window to Edit
@@ -191,7 +191,7 @@ Feature: Program
     Then: Admin gets a message "Successful Program Updated" alert and able to see the updated name in the table for the particular program
 
 
-  @30
+  @EditProgram
   Scenario: Edit Program description
     
     Given:  Admin is on Program Details Popup window to Edit
@@ -199,77 +199,77 @@ Feature: Program
     Then: Admin gets a message "Successful Program Updated" alert and able to see the updated description in the table for the particular program
 
 
-  @31
+  @EditProgram
   Scenario: Change Program Status
     Given: Admin is on Program Details Popup window to Edit
     When: Admin changes the Status and clicks save button
     Then: Admin gets a message "Successful Program Updated" alert and able to see the updated status in the table for the particular program
 
 
-  @32
+  @EditProgram
   Scenario: Validate invalid values on the text column
     Given: Admin is on Program Details Popup window to Edit
     When: Admin enters only numbers or special char in name and desc column
     Then: Admin gets a Error message alert
 
 
-  @33
+  @EditProgram
   Scenario: Validate Cancel button on Edit popup
     Given: Admin is on Program Details Popup window to Edit
     When: Admin clicks <Cancel>button on edit popup
     Then: Admin can see the Program details popup disappears and can see nothing changed for particular program
 
 
-  @34
+  @EditProgram
   Scenario: Validate Save button on Edit popup
     Given: Admin is on Program Details Popup window to Edit
     When: Admin clicks <Save>button on edit popup
     Then: Admin gets a message "Successful Program Updated" alert and able to see the updated details in the table for the particular program
 
 
-  @35
+  @DeleteProgram
   Scenario: Delete Feature
     Given: Admin is on Manage Program Page 
     When: Admin clicks <Delete> button on the data table for any row
     Then: Admin should see a alert open with heading "Confirm" along with  <YES> and <NO> button for deletion
 
 
-  @36
+  @DeleteProgram
   Scenario: Validate details for Confirm Deletion form
     Given: Admin is on Manage Program Page 
     When: Admin clicks <Delete> button on the data table for any row
     Then: Admin should see a message "Are you sure you want to delete <Program name>?"
 
 
-  @37
+  @DeleteProgram
   Scenario: Click Yes on deletion window
     Given: Admin is on Confirm Deletion alert
     When: Admin clicks <YES> button on the alert
     Then: Admin gets a message "Successful Program Deleted" alert and able to see that program deleted in the data table
 
 
-  @38
+  @DeleteProgram
   Scenario: Click No on deletion window
     Given: Admin is on Confirm Deletion alert
     When: Admin clicks <NO> button on the alert
     Then: Admin can see the deletion alert disappears without deleting
 
 
-  @39
+  @ValidateCancel/CloseDeleteionAlert
   Scenario: Validate Cancel/Close(X) icon on Confirm Deletion alert
     Given: Admin is on Confirm Deletion alert
     When: Admin clicks Cancel/Close(X) Icon on Deletion alert
     Then: Admin can see the deletion alert disappears without any changes
 
 
-  @40
+  @ValidateCommonDeleteBtnAnyCheckBox
   Scenario: Validate Common Delete button enabled after clicking on any checkbox
     Given: Admin is in Manage Program page
     When: Admin clicks any checkbox in the data table
     Then: Admin should see common delete option enabled under header Manage Program
 
 
-  @41
+  @ValidateDeleteProgramSingleCheckBox
   Scenario: Validate multiple program deletion by selecting Single checkbox
     
     Given: Admin is on Confirm Deletion alert
@@ -277,7 +277,7 @@ Feature: Program
     Then: Admin should land on Manage Program page and can see the selected program is deleted from the data table
 
 
-  @41
+  @ValidateDeleteProgramSingleCheckBox
   Scenario: Validate multiple program deletion by selecting Single checkbox
     
     Given: Admin is on Confirm Deletion alert
@@ -285,7 +285,7 @@ Feature: Program
     Then: Admin should land on Manage Program page and can see the selected program is not deleted from the data table
 
 
-  @42
+  @ValidateDeleteProgramMultiCheckBox
   Scenario Outline: Validate multiple program deletion by selecting multiple check boxes
     Given Admin is on Confirm Deletion alert
     When Admin clicks <Button> button on the alert
@@ -297,7 +297,7 @@ Feature: Program
       | YES    | deleted     |
       | NO     | not deleted |
 
-  @43
+  @Sorting
   Scenario Outline: Validates Sorting(data ordering) on the Program Data table
     Given Admin is on Manage Program Page after clicks Program on the navigation bar
     When Admin clicks the sort icon of <Column name> column
@@ -312,35 +312,35 @@ Feature: Program
       | program Status | ascending  |
       | program Status | descending |
 
-  @44
+  @4Pagination
   Scenario: Verify Next page link
     Given: Admin is on Manage Program page
     When: Admin clicks Next page link on the program table 
     Then: Admin should see the Pagination has "Next" link
 
 
-  @45
+  @4Pagination
   Scenario: Verify Next last link
     Given: Admin is on Manage Program page 
     When: Admin clicks Last page link
     Then: Admin should see the last page record on the table with Next page link are disabled
 
 
-  @46
+  @Pagination
   Scenario: Verify First page link
     Given: Admin is on last page of Program table
     When: Admin clicks First page link
     Then: Admin should see the previous page record on the table with pagination has previous page link
 
 
-  @47
+  @Pagination
   Scenario: Verify Start page link
     Given: Admin is on Previous Program page 
     When: Admin clicks Start page link
     Then: Admin should see the very first page record on the table with Previous page link are disabled
 
 
-  @48
+  @NavigateToDifferentPages
   Scenario Outline: Navigate to Different Pages from the Navigation Bar
     Given Admin is on Manage Program page
     When Admin clicks on <LinkName> link on Manage Program page

@@ -6,6 +6,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.lmsuiphase2.utilities.CommonUtils;
+
 public class ProgramPage_PO {
 
 	WebDriver driver;
@@ -57,7 +59,16 @@ public class ProgramPage_PO {
 	@FindBy (xpath = "//button[text()='No']")WebElement noBtn;
 	
 	
-
-
+public void clickobProgramTab() {
+	programTab.click();
+	
+}
+public void confirmDelete(String text)
+{
+	if(text.equals(CommonUtils.CONFIRM_YES))
+		yesBtn.click();
+	else
+		noBtn.click();
+}
 	
 }

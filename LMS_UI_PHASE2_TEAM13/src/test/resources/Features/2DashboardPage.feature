@@ -52,53 +52,21 @@ Feature: DashBoard
     Then: Admin should see the navigation bar text on the top right side
 
 
-  Scenario: Validate navigation bar order 1st Student
-    Given:  Admin is in login page
-    When: Admin enter valid credentials  and clicks login button
-    Then: Admin should see student in the 1st place
+  Scenario Outline: Validate navigation bar order for <BarOrder> <TabName>
+    Given Admin is in the login page
+    When Admin enters valid credentials and clicks the login button
+    Then Admin should see <TabName> in the <BarOrder> place
 
-
-  Scenario: Validate navigation bar order  2nd Program
-    Given: Admin is in login page
-    When:  Admin enter valid credentials  and clicks login button
-    Then: Admin should see program in the 2nd place
-
-
-  Scenario: Validate navigation bar order  3rd Batch
-    Given: Admin is in login page
-    When: Admin enter valid credentials  and clicks login button
-    Then: Admin should see batch in the 3rd place
-
-
-  Scenario: Validate navigation bar order 4th Class
-    Given: Admin is in login page
-    When: Admin enter valid credentials  and clicks login button
-    Then:  Admin should see class in the 4th place
-
-
-  Scenario: Validate navigation bar order 5th User
-    Given: Admin is in login page
-    When: Admin enter valid credentials  and clicks login button
-    Then: Admin should see student in the  5th user
-
-
-  Scenario: Validate navigation bar order 6th Assignment
-    Given: Admin is in login page
-    When: Admin enter valid credentials  and clicks login button
-    Then: Admin should see student in the  6th assignment
-
-
-  Scenario: Validate navigation bar order 7th Attendance
-    Given: Admin is in login page
-    When: Admin enter valid credentials  and clicks login button
-    Then: Admin should see student in the  7th attendance
-
-
-  Scenario: Validate navigation bar order 8th Logout
-    Given: Admin is in login page
-    When: Admin enter valid credentials  and clicks login button
-    Then: Admin should see student in the 8th logout
-
+    Examples: 
+      | BarOrder | TabName    |
+      | 1st      | Student    |
+      | 2nd      | Program    |
+      | 3rd      | Batch      |
+      | 4th      | Class      |
+      | 5th      | User       |
+      | 6th      | Assignment |
+      | 7th      | Attendance |
+      | 8th      | Logout     |
 
   Scenario: Verify Logout button function
     Given: Admin is in dashboard page
