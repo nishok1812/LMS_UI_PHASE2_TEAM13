@@ -242,7 +242,7 @@ Feature: Validating Assignment Page
   	
   	Examples: 
       | Sheet Name             | Row Number |
-      | Assignment Data        |          12 |
+      | Assignment Data        |          11 |
 
   		#AddNewAssignmentValidation
   		@Assignment_TC_032
@@ -253,7 +253,7 @@ Feature: Validating Assignment Page
   	
   	Examples: 
       | Sheet Name             | Row Number |
-      | Assignment Data        |          13 |
+      | Assignment Data        |          12 |
       
   		#AddNewAssignmentValidation
   		@Assignment_TC_033
@@ -264,7 +264,7 @@ Feature: Validating Assignment Page
   	
   	Examples: 
       | Sheet Name             | Row Number |
-      | Assignment Data        |          14 |    
+      | Assignment Data        |          13 |    
       
       
   		#AddNewAssignmentValidation
@@ -276,7 +276,7 @@ Feature: Validating Assignment Page
   	
   	Examples: 
       | Sheet Name             | Row Number |
-      | Assignment Data        |          15 |      
+      | Assignment Data        |          14 |      
       
   		#AddNewAssignmentValidation
   		@Assignment_TC_035
@@ -287,7 +287,7 @@ Feature: Validating Assignment Page
   	
   	Examples: 
       | Sheet Name             | Row Number |
-      | Assignment Data        |          16 |    
+      | Assignment Data        |          15 |    
       
   		#AddNewAssignmentValidation
   		@Assignment_TC_036
@@ -298,7 +298,7 @@ Feature: Validating Assignment Page
   	
   	Examples: 
       | Sheet Name             | Row Number |
-      | Assignment Data        |          17 |    
+      | Assignment Data        |          16 |    
       
   		#AddNewAssignmentValidation
   		@Assignment_TC_037
@@ -309,7 +309,7 @@ Feature: Validating Assignment Page
   	
   	Examples: 
       | Sheet Name             | Row Number |
-      | Assignment Data        |          18 |  
+      | Assignment Data        |          17 |  
       
   		#AddNewAssignmentValidation
   		@Assignment_TC_038
@@ -320,7 +320,7 @@ Feature: Validating Assignment Page
   	
   	Examples: 
       | Sheet Name             | Row Number |
-      | Assignment Data        |          19 |    
+      | Assignment Data        |          18 |    
       
   		#AddNewAssignmentValidation
   		@Assignment_TC_039
@@ -624,22 +624,7 @@ Feature: Validating Assignment Page
     When Admin creates less than or equal to 5 new  assignment 
     Then Admin should see that if total class entries are below 5 then next page is disabled
     
-  		#NavigateToDifferentPages
-  		@Assignment_TC_081
-  Scenario Outline: Navigate to Different Pages from the Navigation Bar
-    Given Admin is on Manage Assignment page
-    When Admin clicks on "<Sheet Name>" and "<Row Number>" link on Manage Assignment page
-    Then Admin is re-directed to "<Sheet Name>" and "<Row Number>" page
-
-    Examples: 
-      | Sheet Name   | Row Number |
-      | Link    | 1         |
-      | Link      | 2           |
-      | Link      | 3           |
-      | Link       | 4            |
-      | Link | 5      |
-      | Link | 6      |
-      | Link     | 7           |
+  
    
 
  

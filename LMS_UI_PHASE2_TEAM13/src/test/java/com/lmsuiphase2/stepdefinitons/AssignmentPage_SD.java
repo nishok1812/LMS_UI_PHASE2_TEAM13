@@ -2,8 +2,6 @@ package com.lmsuiphase2.stepdefinitons;
 
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -17,7 +15,7 @@ import com.lmsuiphase2.apphooks.Hooks;
 import com.lmsuiphase2.pageobjects.AssignmentPage_PO;
 import com.lmsuiphase2.pageobjects.Common_PO;
 import com.lmsuiphase2.utilities.CommonUtils;
-import com.thoughtworks.qdox.model.expression.GreaterEquals;
+
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -29,7 +27,7 @@ public class AssignmentPage_SD {
 	public static AssignmentPage_PO assignPoObj;
 	Common_PO commonObj;
 	private static final Logger log= LogManager.getLogger(DashboardPage_SD.class);	
-	private List<String> initialAssignmentData;
+	
 	
 	public AssignmentPage_SD()
 	{
@@ -262,12 +260,6 @@ public class AssignmentPage_SD {
 		assertEquals(assignPoObj.programName_DropDown.isDisplayed(),true);
 	}
 
-//	@Then("Admin should see calendar icon for assignment due date")
-//	public void admin_should_see_calendar_icon_for_assignment_due_date() {
-//
-//		// Need to implement
-//	}
-
 	@Then("Admin should see save button in the Assignment detail popup window")
 	public void admin_should_see_save_button_in_the_assignment_detail_popup_window() {
 		boolean popupVisible = assignPoObj.isAssignmentDetailsPopupVisible();
@@ -387,66 +379,6 @@ public class AssignmentPage_SD {
 		assignPoObj.ExcelReader(sheetName, rowNo);
 	}
 
-//	@When("Admin clicks date from date picker")
-//	public void admin_clicks_date_from_date_picker() {
-//		 
-//		// Need to implement
-//	}
-//
-//	@Then("Admin should see selected date in class date text box")
-//	public void admin_should_see_selected_date_in_class_date_text_box() {
-//		 
-//		// Need to implement
-//	}
-//
-//	@Then("Admin should see selected date in mm\\/dd\\/yyyy format")
-//	public void admin_should_see_selected_date_in_mm_dd_yyyy_format() {
-//		 
-//		// Need to implement
-//	}
-//
-//	@When("Admin clicks right arrow in the date picker near month")
-//	public void admin_clicks_right_arrow_in_the_date_picker_near_month() {
-//		 
-//		// Need to implement
-//	}
-//
-//	@Then("Admin should see Next month calendar")
-//	public void admin_should_see_next_month_calendar() {
-//		 
-//		// Need to implement
-//	}
-//
-//	@When("Admin clicks left arrow in the date picker near month")
-//	public void admin_clicks_left_arrow_in_the_date_picker_near_month() {
-//		 
-//		// Need to implement
-//	}
-//
-//	@Then("Admin should see previous month calendar")
-//	public void admin_should_see_previous_month_calendar() {
-//		 
-//		// Need to implement
-//	}
-//
-//	@When("Admin clicks date picker button")
-//	public void admin_clicks_date_picker_button() {
-//		 
-//		// Need to implement
-//	}
-//
-//	@Then("Admin should see that current date is highlighted in the date picker")
-//	public void admin_should_see_that_current_date_is_highlighted_in_the_date_picker() {
-//		 
-//		// Need to implement
-//	}
-//
-//	@Then("Admin should see that selected date is highlighted in the date picker")
-//	public void admin_should_see_that_selected_date_is_highlighted_in_the_date_picker() {
-//		 
-//		// Need to implement
-//	}
-
 	@When("Admin clicks Cancel\\/Close\\(X) Icon  without entering values in the fields")
 	public void admin_clicks_cancel_close_x_icon_without_entering_values_in_the_fields() {
 		
@@ -473,7 +405,6 @@ public class AssignmentPage_SD {
 
 				assignPoObj.isDataTableEmpty();
 	}
-
 
 	@When("Admin clicks Edit button in data table")
 	public void admin_clicks_edit_button_in_data_table() {
@@ -528,237 +459,239 @@ public class AssignmentPage_SD {
 	}
 
 	@When("Admin enters all mandatory field values with invalid data from from  {string} and {string} and clicks save button")
-	public void admin_enters_all_mandatory_field_values_with_invalid_data_from_from_and_and_clicks_save_button(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("Admin is on Manage Assignment Page and clicks on Edit New Assignment to open Edit assignment details popup window")
-	public void admin_is_on_manage_assignment_page_and_clicks_on_edit_new_assignment_to_open_edit_assignment_details_popup_window() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_enters_all_mandatory_field_values_with_invalid_data_from_from_and_and_clicks_save_button(String sheetName, Integer rowNo) throws IOException {
+		 
+		log.info("Admin fills all the values from sheet");
+		assignPoObj.ExcelReader(sheetName, rowNo);
 	}
 
 	@When("Admin enters missing value in program name and clicks on save button")
-	public void admin_enters_missing_value_in_program_name_and_clicks_on_save_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_enters_missing_value_in_program_name_and_clicks_on_save_button(String sheetName, Integer rowNo) throws IOException {
+		 
+		log.info("Admin fills all the values from sheet");
+		assignPoObj.ExcelReader(sheetName, rowNo);
 	}
 
 	@When("Admin enters missing value in Batch number and clicks on save button")
-	public void admin_enters_missing_value_in_batch_number_and_clicks_on_save_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_enters_missing_value_in_batch_number_and_clicks_on_save_button(String sheetName, Integer rowNo) throws IOException {
+		 
+		log.info("Admin fills all the values from sheet");
+		assignPoObj.ExcelReader(sheetName, rowNo);
 	}
 
 	@When("Admin enters missing value in Assignment name and clicks on save button")
-	public void admin_enters_missing_value_in_assignment_name_and_clicks_on_save_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_enters_missing_value_in_assignment_name_and_clicks_on_save_button(String sheetName, Integer rowNo) throws IOException {
+		 
+		log.info("Admin fills all the values from sheet");
+		assignPoObj.ExcelReader(sheetName, rowNo);
 	}
 
 	@When("Admin enters missing value in Assignment due date and clicks on save button")
-	public void admin_enters_missing_value_in_assignment_due_date_and_clicks_on_save_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_enters_missing_value_in_assignment_due_date_and_clicks_on_save_button(String sheetName, Integer rowNo) throws IOException {
+		 
+		log.info("Admin fills all the values from sheet");
+		assignPoObj.ExcelReader(sheetName, rowNo);
 	}
 
 	@When("Admin enters missing value in Grade by and clicks on save button")
-	public void admin_enters_missing_value_in_grade_by_and_clicks_on_save_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_enters_missing_value_in_grade_by_and_clicks_on_save_button(String sheetName, Integer rowNo) throws IOException {
+		 
+		log.info("Admin fills all the values from sheet");
+		assignPoObj.ExcelReader(sheetName, rowNo);
 	}
 
 	@When("Admin enters passed date in the due date field and clicks save button")
-	public void admin_enters_passed_date_in_the_due_date_field_and_clicks_save_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_enters_passed_date_in_the_due_date_field_and_clicks_save_button(String sheetName, Integer rowNo) throws IOException {
+		 
+		log.info("Admin fills all the values from sheet");
+		assignPoObj.ExcelReader(sheetName, rowNo);
 	}
 
 	@When("Admin clicks Cancel button without entering values in the fields")
 	public void admin_clicks_cancel_button_without_entering_values_in_the_fields() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		if (assignPoObj.isAlertPresent()) {
+			assignPoObj.dismissAlert(); // Dismiss the alert
+	    } else {
+	        Assert.fail("Assignment Creation is cancelled.");
+	    }
 	}
 
 	@When("Admin clicks delete button in data table row level")
 	public void admin_clicks_delete_button_in_data_table_row_level() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		
+		log.info("Admin clicks delete button in data table row level Assignment page");
+		assignPoObj.singleDeleteBtnClick();
 	}
 
 	@Then("Admin should see dialog box")
 	public void admin_should_see_dialog_box() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		
+		log.info("Admin should see alert Assignment page");
+		assertEquals(commonObj.isAlertPresent(),true);
 	}
 
 	@Then("Alert should have {string} button to accept")
 	public void alert_should_have_button_to_accept(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		log.info("Alert should have "+string+" button to accept Assignment page");
+		assertEquals(assignPoObj.isYesBtnInAlertPresent(),true);
 	}
 
 	@Then("Alert should have {string} button to reject")
 	public void alert_should_have_button_to_reject(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		log.info("Alert should have "+string+" button to reject Assignment page");
+		assertEquals(assignPoObj.isNoBtnInAlertPresent(),true);
 	}
 
 	@Given("Admin clicks row level delete button after landing to manage assignment page")
 	public void admin_clicks_row_level_delete_button_after_landing_to_manage_assignment_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		log.info("Admin validates Delete Icon in each row of data table ");
+		assertEquals(commonObj.singleDeleteBtnPresent(),true);
 	}
 
 	@When("Admin clicks yes button")
 	public void admin_clicks_yes_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		log.info("Admin clicks yes button ");
+		assignPoObj.acceptAlert();
 	}
 
 	@Then("Admin should be redirected to assignment page and selected assignment details are deleted from the data table")
 	public void admin_should_be_redirected_to_assignment_page_and_selected_assignment_details_are_deleted_from_the_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-//	@When("Admin clicks No button")
-//	public void admin_clicks_no_button() {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new io.cucumber.java.PendingException();
-//	}
-
-	@Then("Admin should be redirected to assignment page and selected assignment details are not deleted from the data table")
-	public void admin_should_be_redirected_to_assignment_page_and_selected_assignment_details_are_not_deleted_from_the_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("Admin clicks single  row level check box in the data table")
-	public void admin_clicks_single_row_level_check_box_in_the_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("Admin should see delete icon below the header is enabled")
-	public void admin_should_see_delete_icon_below_the_header_is_enabled() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("Admin is on Manage Assignment Page and clicks delete button under header after selecting the check box in the data table")
-	public void admin_is_on_manage_assignment_page_and_clicks_delete_button_under_header_after_selecting_the_check_box_in_the_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		log.info("Validate Success message");
+		assertEquals( "Record Deleted",assignPoObj.getSuccessMessage());
 	}
 
 	@When("Admin clicks no button")
 	public void admin_clicks_no_button() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		log.info("Admin clicks no button ");
+		assignPoObj.dismissAlert();
 	}
+	
+	@Then("Admin should be redirected to assignment page and selected assignment details are not deleted from the data table")
+	public void admin_should_be_redirected_to_assignment_page_and_selected_assignment_details_are_not_deleted_from_the_data_table() {
+		log.info("User should get Redirected manage attendance page");
+		assertEquals(CommonUtils.attendanceUrl, commonObj.getCurrentUrl());
+	}
+
+	@When("Admin clicks single  row level check box in the data table")
+	public void admin_clicks_single_row_level_check_box_in_the_data_table() {
+
+		log.info("Admin clicks single  row level check box in the data table Attendance page");
+		assignPoObj.selectCheckBoxInRow();	}
+
+	@Then("Admin should see delete icon below the header is enabled")
+	public void admin_should_see_delete_icon_below_the_header_is_enabled() {
+		
+		log.info("Admin should see delete icon below the header is enabled");
+		assertEquals(commonObj.isMultiDeleteButtonEnabled(),true);
+		assignPoObj.addNewAssignmentBtnClick();
+	}
+
+	@Given("Admin is on Manage Assignment Page and clicks delete button under header after selecting the check box in the data table")
+	public void admin_is_on_manage_assignment_page_and_clicks_delete_button_under_header_after_selecting_the_check_box_in_the_data_table() {
+		log.info("Admin should see tick mark in check box");
+		assertEquals(commonObj.isAllCheckBoxSelected(),true);
+		assignPoObj.addNewAssignmentBtnClick();
+	}
+
 
 	@Given("Admin is on Manage Assignment Page and clicks delete button under header after selecting the multiple check box in the data table")
 	public void admin_is_on_manage_assignment_page_and_clicks_delete_button_under_header_after_selecting_the_multiple_check_box_in_the_data_table() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		log.info("Admin clicks multiple row level check box in the data table");
+		commonObj.selectMultipleCheckBox();
 	}
 
 	@When("Admin click on assignment name column header to sort")
 	public void admin_click_on_assignment_name_column_header_to_sort() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		log.info("Admin should see sort icon near the column headers Assignment Name");
+		assertEquals(assignPoObj.isAssignmentNameSortIconVisible(),true);
 	}
-
-	@Then("Admin should see data table sorted in descending order")
-	public void admin_should_see_data_table_sorted_in_descending_order() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("Admin double click on assignment name column header to sort")
-	public void admin_double_click_on_assignment_name_column_header_to_sort() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("Admin should see data table sorted in ascending order")
-	public void admin_should_see_data_table_sorted_in_ascending_order() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("Admin is in manage assignment page")
-	public void admin_is_in_manage_assignment_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-//	@Then("Admin should see that Data table displays {int} page  when entries available")
-//	public void admin_should_see_that_data_table_displays_page_when_entries_available(Integer int1) {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new io.cucumber.java.PendingException();
-//	}
 
 	@Then("Admin should see that Right arrow should be enabled in page one  when entries are more than {int} available")
-	public void admin_should_see_that_right_arrow_should_be_enabled_in_page_one_when_entries_are_more_than_available(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_should_see_that_right_arrow_should_be_enabled_in_page_one_when_entries_are_more_than_available(Integer page) {
+
+		log.info("Right arrow should be enabled in page one  when entries are more than "+page+" available");
+		assertEquals(GreaterThan(1),assignPoObj.pageNo.getText());
+		assertEquals(assignPoObj.pageNext_Link.isEnabled(),true);
+		assertEquals(assignPoObj.pageLast_Link.isEnabled(),true);
+	}
+	
+	private String GreaterThan(int i) {
+		return null;
 	}
 
 	@Then("Admin should see that left arrow should be enabled in page one  when entries are more than {int} available")
-	public void admin_should_see_that_left_arrow_should_be_enabled_in_page_one_when_entries_are_more_than_available(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_should_see_that_left_arrow_should_be_enabled_in_page_one_when_entries_are_more_than_available(Integer page) {
+		
+		log.info("Left arrow should be disabled in page one  when entries are more than "+page+" available");
+		assertEquals(GreaterThan(1),assignPoObj.pageNo.getText());
+		assertEquals(assignPoObj.pageFirst_Link.isEnabled(),false);
+		assertEquals(assignPoObj.pagePrev_Link.isEnabled(),false);
 	}
 
 	@Then("Admin should see that Right arrow should be enabled in page two when entries are more than {int} available")
-	public void admin_should_see_that_right_arrow_should_be_enabled_in_page_two_when_entries_are_more_than_available(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_should_see_that_right_arrow_should_be_enabled_in_page_two_when_entries_are_more_than_available(Integer page) {
+		
+		log.info("Right arrow should be enabled in page two when entries are more than "+page+" available");
+		assertEquals(GreaterThan(10),assignPoObj.entryZ.getText());
+		assertEquals(assignPoObj.pageNext_Link.isEnabled(),true);
+		assertEquals(assignPoObj.pageLast_Link.isEnabled(),true);
 	}
 
 	@Then("Admin should see that Left arrow should be enabled in page two")
 	public void admin_should_see_that_left_arrow_should_be_enabled_in_page_two() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		log.info("Left arrow should be enabled in page two");
+		assertEquals(2,assignPoObj.pageNo.getText());
+		assertEquals(assignPoObj.pageFirst_Link.isEnabled(),true);
+		assertEquals(assignPoObj.pagePrev_Link.isEnabled(),true);
 	}
 
 	@Then("Admin should see that Data table displays  page {int}  when entries available")
-	public void admin_should_see_that_data_table_displays_page_when_entries_available(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_should_see_that_data_table_displays_page_when_entries_available(Integer page) {
+		log.info("Data table should display  page "+page+"  when entries available ");
+		assertEquals(2,assignPoObj.pageNo.getText());
+		assertEquals(LessThan(10),assignPoObj.entryZ.getText());
+		assertEquals(assignPoObj.pageNext_Link.isDisplayed(),false);
+		assertEquals(assignPoObj.pageLast_Link.isDisplayed(),false);
+	}
+	
+	private String LessThan(int i) {
+		return null;
 	}
 
 	@Then("Admin should see that entries are more than {int} in data table pagination controls enabled")
-	public void admin_should_see_that_entries_are_more_than_in_data_table_pagination_controls_enabled(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_should_see_that_entries_are_more_than_in_data_table_pagination_controls_enabled(Integer page) {
+		log.info("When entries are more than "+page+" in data table pagination controls enabled");
+		assertEquals(GreaterThan(5),assignPoObj.entryZ.getText());
+		assertEquals(2,assignPoObj.pageNo.getText());
+		assertEquals(assignPoObj.pageFirst_Link.isEnabled(),true);
+		assertEquals(assignPoObj.pagePrev_Link.isEnabled(),true);
+		assertEquals(assignPoObj.pageNext_Link.isEnabled(),true);
+		assertEquals(assignPoObj.pageLast_Link.isEnabled(),true);
 	}
 
 	@Then("Admin should see that entries are less than {int} in data table pagination controls disabled")
-	public void admin_should_see_that_entries_are_less_than_in_data_table_pagination_controls_disabled(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_should_see_that_entries_are_less_than_in_data_table_pagination_controls_disabled(Integer page) {
+		log.info("When entries are less than "+page+" in data table pagination controls disabled");
+		assertEquals(LessThan(5),assignPoObj.entryZ.getText());
+		assertEquals(1,assignPoObj.pageNo.getText());
+		assertEquals(assignPoObj.pageFirst_Link.isEnabled(),false);
+		assertEquals(assignPoObj.pagePrev_Link.isEnabled(),false);
+		assertEquals(assignPoObj.pageNext_Link.isEnabled(),false);
+		assertEquals(assignPoObj.pageLast_Link.isEnabled(),false);
 	}
 
 	@Given("Admin click +Add New assignment button after reaching to manage assignment page")
 	public void admin_click_add_new_assignment_button_after_reaching_to_manage_assignment_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("Admin creates {int} new assignment")
-	public void admin_creates_new_assignment(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assignPoObj.addNewAssignmentBtnClick();
 	}
 
 	@Then("Admin should see that if total class entries above {int} next page is enabled \\( On multiples of {int} new page will be enabled)")
-	public void admin_should_see_that_if_total_class_entries_above_next_page_is_enabled_on_multiples_of_new_page_will_be_enabled(Integer int1, Integer int2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_should_see_that_if_total_class_entries_above_next_page_is_enabled_on_multiples_of_new_page_will_be_enabled(Integer entries, Integer page) {
+
+		log.info("When total attendance entries above "+entries+" next page is enabled");
+		assertEquals(GreaterThan(5), assignPoObj.entryZ.getText());
+		assertEquals(assignPoObj.pageNext_Link.isEnabled(),true);
+		assertEquals(assignPoObj.pageLast_Link.isEnabled(),true);
 	}
 
 	@When("Admin creates less than or equal to {int} new  assignment")
@@ -768,32 +701,11 @@ public class AssignmentPage_SD {
 	}
 
 	@Then("Admin should see that if total class entries are below {int} then next page is disabled")
-	public void admin_should_see_that_if_total_class_entries_are_below_then_next_page_is_disabled(Integer int1) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void admin_should_see_that_if_total_class_entries_are_below_then_next_page_is_disabled(Integer entries) {
+		log.info("Validates total attendance entries  "+entries+" or below next page is disabled");
+		assertEquals(LessThan(5), assignPoObj.entryZ.getText());
+		assertEquals(assignPoObj.pageNext_Link.isEnabled(),false);
+		assertEquals(assignPoObj.pageLast_Link.isEnabled(),false);
 	}
-
-
-
-
-	@When("Admin clicks on {string} and {string} link on Manage Assignment page")
-	public void admin_clicks_on_and_link_on_manage_assignment_page(String string, String string2) {
-		// Need to implement
-	}
-
-	@Then("Admin is re-directed to {string} and {string} page")
-	public void admin_is_re_directed_to_and_page(String string, String string2) {
-		// Need to implement
-	}
-
-
-
-
-
-
-
-
-
-
 
 }
