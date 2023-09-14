@@ -1,5 +1,7 @@
 package com.lmsuiphase2.stepdefinitons;
 
+import java.io.IOException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -108,14 +110,9 @@ public class LoginPage_SD {
 		LoginPO.Password.isDisplayed();
 	}
 
-	@Then("Admin should {string} in the first text field")
-	public void admin_should_in_the_first_text_field(String string) {
+	@Then("Admin should in the first text field")
+	public void admin_should_in_the_first_text_field() {
 		LoginPO.User.isDisplayed();
-	}
-
-	@When("Admin enter user value and clicks Login button")
-	public void admin_enter_user_value_and_clicks_login_button(String string) {
-		LoginPO.enterUser(string);
 	}
 
 	@Then("Admin should see * symbol next to user text")
@@ -123,14 +120,9 @@ public class LoginPage_SD {
 		LoginPO.User.isDisplayed();
 	}
 
-	@Then("Admin should {string} in the second text field")
-	public void admin_should_in_the_second_text_field(String string) {
+	@Then("Admin should in the second text field")
+	public void admin_should_in_the_second_text_field() {
 		LoginPO.Password.isDisplayed();
-	}
-
-	@When("Admin enter password value and clicks Login button")
-	public void admin_enter_password_value_and_clicks_login_button(String string) {
-		LoginPO.enterPassword(string);
 	}
 
 	@Then("Admin should see * symbol next to password text")
@@ -173,9 +165,10 @@ public class LoginPage_SD {
 		LoginPO.Login();
 	}
 
-	@When("Admin enter valid credentials from {string} and {string} and clicks login button")
-	public void admin_enter_valid_credentials_from_and_and_clicks_login_button(String string, String string2) {
-		LoginPO.adminLoginWithValidCredentials(string, string2);
+	@When("Admin enter valid credentials from {string} and {int} and clicks login button")
+	public void admin_enter_valid_credentials_from_and_and_clicks_login_button(String sheetName, Integer rowNo)
+			throws IOException {
+		LoginPO.ExcelReader(sheetName, rowNo);
 	}
 
 	@Then("Admin should land on dashboard page")
@@ -183,9 +176,10 @@ public class LoginPage_SD {
 		LoginPO.dashboardPage();
 	}
 
-	@When("Admin enter invalid credentials  from {string} and {string} and clicks login button")
-	public void admin_enter_invalid_credentials_from_and_and_clicks_login_button(String string, String string2) {
-		LoginPO.adminLoginWithInvalidCredentials(string, string2);
+	@When("Admin enter invalid credentials  from {string} and {int} and clicks login button")
+	public void admin_enter_invalid_credentials_from_and_and_clicks_login_button(String sheetName, Integer rowNo)
+			throws IOException {
+		LoginPO.ExcelReader(sheetName, rowNo);
 	}
 
 	@Then("Error message please check username/password")
@@ -194,9 +188,10 @@ public class LoginPage_SD {
 		LoginPO.getErrorMessage(string);
 	}
 
-	@When("Admin enter valid username from {string} and {string} and clicks login button")
-	public void admin_enter_valid_username_from_and_and_clicks_login_button(String string) {
-		LoginPO.LoginWithValidCredentialsInUsername(string);
+	@When("Admin enter valid username from {string} and {int} and clicks login button")
+	public void admin_enter_valid_username_from_and_and_clicks_login_button(String sheetName, Integer rowNo)
+			throws IOException {
+		LoginPO.ExcelReader(sheetName, rowNo);
 	}
 
 	@Then("Error message please check password")
@@ -204,9 +199,10 @@ public class LoginPage_SD {
 		LoginPO.getErrorMessage(string);
 	}
 
-	@When("Admin enter valid  password from {string} and {string} and clicks login button")
-	public void admin_enter_valid_password_from_and_and_clicks_login_button(String string, String string2) {
-
+	@When("Admin enter valid  password from {string} and {int} and clicks login button")
+	public void admin_enter_valid_password_from_and_and_clicks_login_button(String sheetName, Integer rowNo)
+			throws IOException {
+		LoginPO.ExcelReader(sheetName, rowNo);
 	}
 
 	@Then("Error message please check username")
@@ -214,20 +210,23 @@ public class LoginPage_SD {
 		LoginPO.getErrorMessage(string);
 	}
 
-	@When("Admin enter blank in username from {string} and clicks login button")
-	public void admin_enter_blank_in_username_from_and_and_clicks_login_button(String string) {
-		LoginPO.enterPassword(string);
+	@When("Admin enter blank in username from {string} and {int} and  clicks login button")
+	public void admin_enter_blank_in_username_from_and_and_clicks_login_button(String sheetName, Integer rowNo)
+			throws IOException {
+		LoginPO.ExcelReader(sheetName, rowNo);
 
 	}
 
-	@When("Admin enter blank in password from {string} and clicks login button")
-	public void admin_enter_blank_in_password_from_and_and_clicks_login_button(String string) {
-		LoginPO.enterUser(string);
+	@When("Admin enter blank in password from {string} and {int} and clicks login button")
+	public void admin_enter_blank_in_password_from_and_and_clicks_login_button(String sheetName, Integer rowNo)
+			throws IOException {
+		LoginPO.ExcelReader(sheetName, rowNo);
 	}
 
-	@When("Admin clicks Login button with empty values in both columns from {string} and {string}")
-	public void admin_clicks_login_button_with_empty_values_in_both_columns_from_and(String string, String string2) {
-		LoginPO.LoginWithEmptyValuesInBothField(string, string2);
+	@When("Admin clicks Login button with empty values in both columns from {string} and {int}")
+	public void admin_clicks_login_button_with_empty_values_in_both_columns_from_and(String sheetName, Integer rowNo)
+			throws IOException {
+		LoginPO.ExcelReader(sheetName, rowNo);
 	}
 
 	@When("Admin enter valid credentials from {string} and {string} and clicks login button through keyboard")
@@ -268,7 +267,7 @@ public class LoginPage_SD {
 		LoginPO.SubmitBtn.isDisplayed();
 	}
 
-	@Then("Admin should see asterik {string} symbol need Email")
+	@Then("Admin should see asterik symbol need Email")
 	public void admin_should_see_asterik_symbol_need_email(String string) {
 		LoginPO.Emailid.isDisplayed();
 	}
@@ -334,11 +333,6 @@ public class LoginPage_SD {
 	public void admin_should_see_text_box_in_disabled_state() {
 		LoginPO.Newpassword.isDisplayed();
 		LoginPO.Retype_Password.isDisplayed();
-	}
-
-	@Given("Admin in reset password page after click reset password link after reaching in login page")
-	public void admin_in_reset_password_page_after_click_reset_password_link_after_reaching_in_login_page() {
-
 	}
 
 	@Then("Admin should see text box is enabled state")
