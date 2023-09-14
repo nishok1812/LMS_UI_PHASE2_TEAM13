@@ -10,14 +10,12 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import com.lmsuiphase2.apphooks.Hooks;
-import com.lmsuiphase2.pageobjects.DashboardPage_PO;
 import com.lmsuiphase2.utilities.CommonUtils;
 import com.lmsuiphase2.pageobjects.BatchPage_PO;
 
 public class BatchPage_SD {
 
 	BatchPage_PO BatchPO;
-	DashboardPage_PO DashboardPO;
 	private WebDriver driver;
 
 	String dashbaordUrl = CommonUtils.dashbaordUrl;

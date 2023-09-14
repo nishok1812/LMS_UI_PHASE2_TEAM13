@@ -2,8 +2,6 @@ package com.lmsuiphase2.stepdefinitons;
 
 import java.io.IOException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import com.lmsuiphase2.apphooks.Hooks;
@@ -51,17 +49,12 @@ public class LoginPage_SD {
 
 	@Then("Admin should recieve {int} page not found error")
 	public void admin_should_recieve_page_not_found_error(Integer int1) {
-		DashboardPagePO.BrokenLinksValidation();
+		LoginPO.BrokenLinksValidation();
 	}
 
 	@Then("HTTP response >= {int}. Then the link is broken")
 	public void http_response_then_the_link_is_broken(Integer int1) {
-		DashboardPagePO.BrokenLinksValidation();
-	}
-
-	@Given("Admin should see correct spellings in all fields")
-	public void admin_should_see_correct_spellings_in_all_fields() {
-		DashboardPagePO.validateTextSpellingAndSpacing();
+		LoginPO.BrokenLinksValidation();
 	}
 
 	@When("Admin should see correct logo of the LMS")
