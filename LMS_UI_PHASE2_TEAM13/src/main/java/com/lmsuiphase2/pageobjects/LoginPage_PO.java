@@ -3,14 +3,16 @@ package com.lmsuiphase2.pageobjects;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import com.lmsuiphase2.pageobjects.Common_PO;
-import com.lmsuiphase2.pageobjects.DashboardPage_PO;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -18,13 +20,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import com.lmsuiphase2.utilities.CommonUtils;
-import com.lmsuiphase2.utilities.ExcelUtils;
+
 
 public class LoginPage_PO {
 
 	WebDriver driver;
 	public Actions action;
-	Common_PO CommonPO;
+	
 
 	public @FindBy(id = "Logo") WebElement Logo;
 	public @FindBy(id = "username") WebElement User;
@@ -41,22 +43,21 @@ public class LoginPage_PO {
 	public @FindBy(id = "Submit") WebElement SubmitBtn;
 	public @FindBy(id = "LMS Application") WebElement LoginTitle;
 	public @FindBy(xpath = "//div[text()='errormessage']") WebElement errMsg;
-
+   
 	String errorMessage;
 	String applicationUrl = CommonUtils.applicationUrl;
 	String loginPageURL = CommonUtils.loginUrl;
 	String excelURL = CommonUtils.excelFilePath;
 	String invalidapp_Url = "http://heruapp.com/";
 	String dashbaordUrl = CommonUtils.dashbaordUrl;
+	String Login_Header = "Please login to LMS application";
 
 	public LoginPage_PO(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		action = new Actions(this.driver);
 
-		CommonPO = new Common_PO();
-
-	}
+		}
 
 	public void homepageWithvalidURL() {
 		driver.get(applicationUrl);
@@ -73,9 +74,37 @@ public class LoginPage_PO {
 	public void dashboardPage() {
 		driver.get(dashbaordUrl);
 	}
+	
+	public  void BrokenLinksValidation() {
+		
+		List<WebElement> links = driver.findElements(By.tagName("a"));
+        // Iterate through the links and validate them
+        for (WebElement link : links) {
+            String url = link.getAttribute("href");
+            if (url != null && !url.isEmpty()) {
+                try {
+                    // Create a URL object
+                    URL linkUrl = new URL(url);
 
-	public boolean getErrorMessage(String errormsg) {
-		return errMsg.getText().equals(errormsg);
+                    // Open a connection to the URL
+                    HttpURLConnection connection = (HttpURLConnection) linkUrl.openConnection();
+                    connection.setRequestMethod("HEAD");
+
+                    // Get the HTTP response code
+                    int responseCode = connection.getResponseCode();
+
+                    // Check for broken links (response code other than 200 OK)
+                    if (responseCode != 200) {
+                        System.out.println("Broken Link Found: " + url + " (HTTP Response Code: " + responseCode + ")");
+                    }
+
+                    // Close the connection
+                    connection.disconnect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 	}
 
 	// LoginPage
@@ -98,6 +127,11 @@ public class LoginPage_PO {
 		sel2.selectByVisibleText(cell.getStringCellValue());
 		LoginBtn.click();
 	}
+	
+	public boolean getErrorMessage(String errormsg) {
+		return errMsg.getText().equals(errormsg);
+	}
+	
 	public void Login() {
 		driver.get(loginPageURL);
 	}
