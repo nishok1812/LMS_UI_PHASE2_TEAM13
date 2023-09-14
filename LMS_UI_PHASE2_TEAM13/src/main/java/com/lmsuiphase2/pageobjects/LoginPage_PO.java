@@ -1,5 +1,12 @@
 package com.lmsuiphase2.pageobjects;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import com.lmsuiphase2.pageobjects.Common_PO;
@@ -8,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import com.lmsuiphase2.utilities.CommonUtils;
 import com.lmsuiphase2.utilities.ExcelUtils;
@@ -71,6 +79,25 @@ public class LoginPage_PO {
 	}
 
 	// LoginPage
+	
+	public void ExcelReader(String sheetName, Integer rowNo) throws IOException {
+
+		File src = new File(CommonUtils.excelFilePath);
+		FileInputStream fileInput = new FileInputStream(src);
+		XSSFWorkbook workbook = new XSSFWorkbook(fileInput);
+		XSSFSheet sheet = workbook.getSheet(sheetName);
+
+		XSSFCell cell = sheet.getRow(rowNo).getCell(0);
+		User.click();
+		Select sel1 =new Select(User);
+		sel1.selectByVisibleText(cell.getStringCellValue());
+
+		cell = sheet.getRow(rowNo).getCell(1);
+		Password.click();
+		Select sel2 =new Select(Password);
+		sel2.selectByVisibleText(cell.getStringCellValue());
+		LoginBtn.click();
+	}
 	public void Login() {
 		driver.get(loginPageURL);
 	}
@@ -86,28 +113,9 @@ public class LoginPage_PO {
 		LoginBtn.click();
 	}
 
-	public void adminLoginWithValidCredentials(String user, String password) {
-		User.sendKeys(user);
-		Password.sendKeys(password);
-	}
-
-	public void adminLoginWithInvalidCredentials(String user, String password) {
-
-		User.sendKeys(user);
-		Password.sendKeys(password);
-	}
-
 	public void LoginWithValidCredentialsInUsername(String user) {
 
 		User.sendKeys(user);
-
-	}
-
-	public void LoginWithEmptyValuesInBothField(String user, String password) {
-
-		User.sendKeys(user);
-		Password.sendKeys(password);
-
 	}
 
 	public void LoginButtonActionThroughKeyboard(String user, String password) {

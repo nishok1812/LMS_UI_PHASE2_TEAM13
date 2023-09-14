@@ -1,6 +1,9 @@
 
 package com.lmsuiphase2.pageobjects;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -8,6 +11,9 @@ import java.util.NoSuchElementException;
 import java.util.logging.LogManager;
 
 import org.apache.logging.log4j.Logger;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +21,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import com.google.common.collect.Ordering;
 import com.lmsuiphase2.utilities.CommonUtils;
@@ -196,17 +203,45 @@ public class BatchPage_PO {
 		return !editButtons.isEmpty();
 	}
 
+	public void ExcelReader(String sheetName, Integer rowNo) throws IOException {
+
+		File src = new File(CommonUtils.excelFilePath);
+		FileInputStream fileInput = new FileInputStream(src);
+		XSSFWorkbook workbook = new XSSFWorkbook(fileInput);
+		XSSFSheet sheet = workbook.getSheet(sheetName);
+
+		XSSFCell cell = sheet.getRow(rowNo).getCell(0);
+		Name.click();
+		Select sel1 =new Select(Name);
+		sel1.selectByVisibleText(cell.getStringCellValue());
+
+		cell = sheet.getRow(rowNo).getCell(1);
+		Description.click();
+		Select sel2 =new Select(Description);
+		sel2.selectByVisibleText(cell.getStringCellValue());
+
+		cell = sheet.getRow(rowNo).getCell(2);
+		Program_Name.click();
+		Select sel3 =new Select(Program_Name);
+		sel3.selectByVisibleText(cell.getStringCellValue());
+
+		cell = sheet.getRow(rowNo).getCell(3);
+		Status.click();
+		Select sel4 =new Select(Status);
+		sel4.selectByVisibleText(cell.getStringCellValue());
+
+		cell = sheet.getRow(rowNo).getCell(4);
+		No_of_Classes.sendKeys(cell.getStringCellValue());
+
+		saveBtn.click();
+	}
+
 	public void clickOnCancelOnPopUpBatch() {
 		cancelBtn.click();
 	}
 
 	public void openAddNewBatchPopUp() {
 		addNewBatchBtn.click();
-	}
-
-	public boolean StatusRadioButtonsVisible() {
-
-		return radio1.isDisplayed() && radio2.isDisplayed();
 	}
 
 	// Method to verify the presence of Delete buttons in each row
@@ -450,121 +485,12 @@ public class BatchPage_PO {
 
 	}
 
-	public void validateAddNewBatch(String name, String description, String program_name, String status,
-			String no_of_classes) {
-
-		Name.clear();
-		Name.sendKeys(name);
-		Description.clear();
-		Description.sendKeys(description);
-		Program_Name.clear();
-		Program_Name.sendKeys(program_name);
-		Status.clear();
-		Status.sendKeys(status);
-		No_of_Classes.clear();
-		No_of_Classes.sendKeys(no_of_classes);
-
-		if (name.isEmpty() && description.isEmpty() && program_name.isEmpty() && status.isEmpty()
-				&& no_of_classes.isEmpty())
-
-			saveBtn.click();
-	}
-
-	public void invalidateAddNewBatch(String name, String description, String program_name, String status,
-			String no_of_classes) {
-
-		Name.clear();
-		Name.sendKeys(name);
-		Description.clear();
-		Description.sendKeys(description);
-		Program_Name.clear();
-		Program_Name.sendKeys(program_name);
-		Status.clear();
-		Status.sendKeys(status);
-		No_of_Classes.clear();
-		No_of_Classes.sendKeys(no_of_classes);
-
-		if (name.isEmpty() && description.isEmpty() && program_name.isEmpty() && status.isEmpty()
-				&& no_of_classes.isEmpty())
-
-			saveBtn.click();
-	}
-
-	public void validateAddNewProgramwithManditoryField(String name, String description, String program_name,
-			String status, String no_of_classes) {
-
-		Name.clear();
-		Name.sendKeys(name);
-		Description.clear();
-		Description.sendKeys(description);
-		Program_Name.clear();
-		Program_Name.sendKeys(program_name);
-		Status.clear();
-		Status.sendKeys(status);
-		No_of_Classes.clear();
-		No_of_Classes.sendKeys(no_of_classes);
-
-		if (name.isEmpty() && program_name.isEmpty() && status.isEmpty() && no_of_classes.isEmpty())
-
-			saveBtn.click();
-	}
-
+	
 	public boolean manditoryFieldErased(String errorMsg) {
 		return errMsg.getText().equals(errorMsg);
 	}
 
-	public void ValidateOptionalDescriptionIsUpdate(String name, String description, String program_name, String status,
-			String no_of_classes) {
-		Name.clear();
-		Name.sendKeys(name);
-		Description.clear();
-		Description.sendKeys(description);
-		Program_Name.clear();
-		Program_Name.sendKeys(program_name);
-		Status.clear();
-		Status.sendKeys(status);
-		No_of_Classes.clear();
-		No_of_Classes.sendKeys(no_of_classes);
-
-		saveBtn.click();
-	}
-
-	public void ValidateupdateNewProgram(String name, String description, String program_name, String status,
-			String no_of_classes) {
-		Name.clear();
-		Name.sendKeys(name);
-		Description.clear();
-		Description.sendKeys(description);
-		Program_Name.clear();
-		Program_Name.sendKeys(program_name);
-		Status.clear();
-		Status.sendKeys(status);
-		No_of_Classes.clear();
-		No_of_Classes.sendKeys(no_of_classes);
-
-		if (name.isEmpty() && program_name.isEmpty() && status.isEmpty() && no_of_classes.isEmpty())
-
-			saveBtn.click();
-	}
-
-	public void ValidateInvalidupdateNewProgram(String name, String description, String program_name, String status,
-			String no_of_classes) {
-		Name.clear();
-		Name.sendKeys(name);
-		Description.clear();
-		Description.sendKeys(description);
-		Program_Name.clear();
-		Program_Name.sendKeys(program_name);
-		Status.clear();
-		Status.sendKeys(status);
-		No_of_Classes.clear();
-		No_of_Classes.sendKeys(no_of_classes);
-
-		if (name.isEmpty() && program_name.isEmpty() && status.isEmpty() && no_of_classes.isEmpty())
-
-			saveBtn.click();
-	}
-
+	
 	public boolean getErrorMessage(String errormsg) {
 		return errMsg.getText().equals(errormsg);
 	}

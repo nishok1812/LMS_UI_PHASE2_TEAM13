@@ -91,11 +91,11 @@ Feature: Login page functionally
     Then Admin should see * symbol next to user text
 
   @LoginPageVerification @LoginPage_TC016
-  Scenario: Verify text on the second text field
+  Scenario:	 Verify text on the second text field
     Given Admin is in home page after LMS portal URL
     When Admin clicks Login button
     Then Admin should "password" in the second text field
-
+    
   @LoginPageVerification @LoginPage_TC017
   Scenario: Verify asterik next to password text
     Given Admin is in home page after LMS portal URL
@@ -217,22 +217,22 @@ Feature: Login page functionally
   @LoginPageVerification @LoginPage_TC032
   Scenario Outline: Verify login button action through keyboard
     Given Admin in login page after clicking login button in home page
-    When Admin enter valid credentials from "<Sheet Name>" and "<Row Number>" and clicks login button through keyboard
+    When Admin enter valid credentials from <Name> and <Password> and clicks login button through keyboard
     Then Admin should land on dashboard page
 
-    Examples: 
-      | Sheet Name | Row Number |
-      | Login Data |          9 |
+     Examples: 
+      | Name | Password |
+      | kavi | Pass134 |
 
   @LoginPageVerification @LoginPage_TC033
   Scenario Outline: Verify login button action through mouse
     Given Admin in login page after clicking login button in home page
-    When Admin enter valid credentials from "<Sheet Name>" and "<Row Number>" and clicks login button through mouse
+    When Admin enter valid credentials from <Name> and <Password> and clicks login button through mouse
     Then Admin should land on dashboard page
 
     Examples: 
-      | Sheet Name | Row Number |
-      | Login Data |         10 |
+      | Name | Password |
+      | Anu  | Pass1234 |
 
   @ForgotUsername/Password @LoginPage_TC034
   Scenario: Verify forgot username or password link
