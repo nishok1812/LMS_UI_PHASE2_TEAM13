@@ -157,7 +157,7 @@ public class AssignmentPage_PO {
 	@FindBy(xpath="//div[@class='oxd-assignment-file5-input']")
 	WebElement assignmentFile5_TextBox;
 	
-	@FindBy (id="pageno")
+@FindBy (id="pageno")
 	public
 	WebElement pageNo;
 
@@ -192,7 +192,6 @@ public class AssignmentPage_PO {
 	@FindBy (id="entryZ")
 	public
 	WebElement entryZ;
-	
 	public int winHeight; 
 	public int winWidth;
 	public int xPos;
@@ -425,8 +424,7 @@ public class AssignmentPage_PO {
 		return Msg;
 
 	}
-
-	//Method to check if the alert is present
+//Method to check if the alert is present
 	public boolean isAlertPresent() {
 	    try {
 	        driver.switchTo().alert();
@@ -476,6 +474,7 @@ public class AssignmentPage_PO {
 
 		return assignmentName_SortBtn.isDisplayed();	
 	}
+
 
 
 }

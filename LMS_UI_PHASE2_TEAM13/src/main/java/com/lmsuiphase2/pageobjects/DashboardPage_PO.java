@@ -2,7 +2,6 @@ package com.lmsuiphase2.pageobjects;
 
 import java.util.List;
 import java.util.Scanner;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -11,13 +10,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.lmsuiphase2.utilities.CommonUtils;
-
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Dictionary;
 import java.util.HashMap;
 
 
@@ -30,19 +29,12 @@ public class DashboardPage_PO {
 		PageFactory.initElements(driver, this);
 		action = new Actions(this.driver);}
 	
-	
-	
-	
 	private final static Logger LOG = LogManager.getLogger(DashboardPage_PO.class);
 	
-
-	
-
 	@FindBy	(xpath = "//h2[text()='Manage Program']") WebElement programHeader;
 	@FindBy	(xpath = "//h2[text()='Manage Program']") WebElement lmsTitle;
 	@FindBy	(xpath = "//h2[text()='Manage Program']") List<WebElement>  lmsTextTitle;
 	@FindBy	(xpath = "//h2[text()='Manage Program']") List<WebElement>  tab;
-	
 	@FindBy	(xpath = "") WebElement programFooter;
 	@FindBy	(xpath = "") WebElement navigationBar;
 	@FindBy	(xpath = "")WebElement paginatorText;
@@ -83,9 +75,7 @@ public class DashboardPage_PO {
 	public String getProdHeader()
 	{
 		return programHeader.getText();
-		
-		
-		
+			
 	}
 	public void logout() {
 		LogoutTab.click();
@@ -128,22 +118,10 @@ long pageLoadTime = endTime - startTime;
 	return pageLoadTime;
 
 }
-
-
-
-
-
-
     public  void BrokenLinksValidation() {
-       
-
-        // Find all the links on the dashboard page using the anchor <a> tag
-    	 List<WebElement> links = driver.findElements(By.tagName("a"));
-
-       
-
-        // Iterate through the links and validate them
-        for (WebElement link : links) {
+        
+    	 List<WebElement> links = driver.findElements(By.tagName("a")); // Find all the links on the dashboard page using the anchor <a> tag
+for (WebElement link : links) {  // Iterate through the links and validate them
             String url = link.getAttribute("href");
             if (url != null && !url.isEmpty()) {
                 try {
@@ -173,35 +151,35 @@ long pageLoadTime = endTime - startTime;
        }
 
 	
-    public boolean validateTextSpellingAndSpacing() {
+    public boolean validateTextSpellingAndSpacing(List<WebElement> lmsTextTitles) {
         boolean allTextValid = true;
 
-        for (WebElement lmsTextTitle : lmsTextTitle) {
-            String text = lmsTitle.getText();
+        for (WebElement lmsTextTitle : lmsTextTitles) {
+            try {
+                String text = lmsTextTitle.getText();
 
-            // Check spelling (basic validation, you can enhance it further)
-            boolean isSpellingValid = isSpellingValid(text);
+                
+                boolean isSpellingValid = isSpacingValid(text);
 
-            // Check spacing (detects multiple consecutive spaces)
-            boolean isSpacingValid = isSpacingValid(text);
+                
+                boolean isSpacingValid = isSpacingValid(text); 
 
-            if (!isSpellingValid || !isSpacingValid) {
-                System.out.println("Text validation issues in: " + text);
+                if (!isSpellingValid || !isSpacingValid) {
+                   
+                    System.out.println("Text validation issues in: " + text); // Log the validation issues
+                    allTextValid = false;
+                }
+            } catch (Exception e) { // Handle any exceptions that may occur during text retrieval
+                
+                System.out.println("Error while processing text: " + e.getMessage());
                 allTextValid = false;
             }
         }
 
         return allTextValid;
     }
-    private boolean isSpellingValid(String text) {
-        // Implement your spelling validation logic here
-        // You can use dictionaries or other methods to check spelling
-        // For simplicity, we'll return true for now
-        return true;
-    }
 
-    // Custom method to check spacing (detects multiple consecutive spaces)
-    private boolean isSpacingValid(String text) {
+     private boolean isSpacingValid(String text) {
         if (text.matches(".*\\s{2,}.*")) {
             return false; // Spacing issue detected
         }
@@ -247,7 +225,11 @@ long pageLoadTime = endTime - startTime;
     
     
     public String getTabPosition(int position) {
-        //WebElement tab = driver.findElement(By.xpath("//div[@id='navbar']//li[" + position + "]/a"));
+       
         return ((WebElement) tab).getText();
+    }
+    
+    public void clickOnprogramTab() {
+    	programTab.click();
     }
 }
