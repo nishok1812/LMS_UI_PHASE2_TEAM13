@@ -3,7 +3,7 @@
 <suite name="RunFirst">
   <test  name="RunFirst">	 
     <classes>
-      <class name="com.dsalgoproject.testrunner.RunnerFile"></class>
+      <class name="com.LMS_UI_PHASE2_TEAM13.testrunner.RunnerFile"></class>
     </classes>
     </test> 
   
