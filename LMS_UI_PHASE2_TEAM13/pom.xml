@@ -39,7 +39,7 @@
                     <configuration>
                         <filesets>
                             <fileset>
-                                <directory>DS_ALGO_PROJECT\allure-results</directory>
+                                <directory>LMS_UI_PHASE2_TEAM13\allure-results</directory>
                             </fileset>
                         </filesets>
                     </configuration>

@@ -136,7 +136,7 @@ Examples:
 @UserPage_TC_0020
 Scenario: Validate row level edit icon
 Given The edit icon on row level in data table is enabled
-When Admin clicks the edit icon
+When Admin clicks the edit icon1
 Then A new pop up with User details appears
 
 @UserPage_TC_0021
@@ -148,7 +148,7 @@ Examples:
 |SheetName|Row|
 |User|5|
 @UserPage_TC_0022
-Scenario: Check if the update throws error with invalid values
+Scenario Outline: Check if the update throws error with invalid values
 Given Admin clicks the edit icon
 When Update the fields with invalid values from "<SheetName>" and "<Row>"  and click submit
 Then Error message should appear on userpage

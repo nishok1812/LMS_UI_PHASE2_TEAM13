@@ -33,7 +33,7 @@ private static final Logger log= LogManager.getLogger(StudentPage_SD.class);
 	{
 	  driver = Hooks.getDriver();
 	 sd =  new StudentPage_PO(driver);
-	 cmpo = new Common_PO();
+	 cmpo = new Common_PO(driver);
 	}
 
 	
@@ -49,7 +49,7 @@ private static final Logger log= LogManager.getLogger(StudentPage_SD.class);
 
 	@Then("Admin should see the Student details Page Title")
 	public void admin_should_see_the_student_details_page_title() {
-		String Studentheader=Common_PO.getHeader();
+		String Studentheader=cmpo.getHeader();
 		
 		String ExpectedHeader = sd.expectedUrl;
 		Assert.assertEquals(Studentheader, ExpectedHeader);

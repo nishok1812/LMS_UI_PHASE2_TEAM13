@@ -334,26 +334,24 @@ public class LoginPage_SD {
 		LoginPO.Retype_Password.isEnabled();
 	}
 
-	@When("Admin enters same Password@{String} and Password@{String} on both field and clicks submit button")
-	public void admin_enters_same_password_and_password_on_both_field_and_clicks_submit_button(String string,
-			String string2) {
-		LoginPO.resetPasswordWithValidDetails(string, string);
-	}
-
-	@When("Admin enters same Pass@{String} and Pass@{String} on both field with invalid details and clicks submit button")
-	public void admin_enters_same_pass_and_pass_on_both_field_with_invalid_details_and_clicks_submit_button(
-			String string, String string2) {
-		LoginPO.resetPasswordWithInvalidDetails(string, string2);
-	}
-
-	@When("Admin enters empty details  and  on both field and clicks submit button")
-	public void admin_enters_empty_details_and_on_both_field_and_clicks_submit_button(String string, String string2) {
-		LoginPO.resetPasswordWithEmptyDetails(string, string2);
-	}
-
-	@When("Admin enters mismatch values of Pass@{String} and Pass@{String} and clicks submit button")
-	public void admin_enters_mismatch_values_of_pass_and_pass_and_clicks_submit_button(String string, String string2) {
-		LoginPO.resetPasswordMismatchValues(string, string2);
-	}
+//	@When("Admin enters same Password@{String} and Password@{String} on both field and clicks submit button")
+//	public void admin_enters_same_password_and_password_on_both_field_and_clicks_submit_button(String string,String string2) {
+//		LoginPO.resetPasswordWithValidDetails(string, string2);
+//	}
+//
+//	@When("Admin enters same Pass@{String} and Pass@{String} on both field with invalid details and clicks sub mit button")
+//	public void admin_enters_same_pass_and_pass_on_both_field_with_invalid_details_and_clicks_submit_button(String string, String string2) {
+//		LoginPO.resetPasswordWithInvalidDetails(string, string2);
+//	}
+//
+//	@When("Admin enters empty details  and  on both field and clicks submit button")
+//	public void admin_enters_empty_details_and_on_both_field_and_clicks_submit_button(String string, String string2) {
+//		LoginPO.resetPasswordWithEmptyDetails(string, string2);
+//	}
+//
+//	@When("Admin enters mismatch values of Pass@{String} and Pass@{String} and clicks submit button")
+//	public void admin_enters_mismatch_values_of_pass_and_pass_and_clicks_submit_button(String string, String string2) {
+//		LoginPO.resetPasswordMismatchValues(string, string2);
+//	}
 
 }

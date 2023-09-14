@@ -108,7 +108,7 @@ Given Admin is on dashboard page after Login Student
  When Admin clicks "Student" on the navigation bar
  Then Admin should able to scroll down to select the batch id on student page
  
- @StudentPage_TC0019
+ 
  
  #Background: Admin is logged in and on the student Details page
  
@@ -124,7 +124,7 @@ Given Admin is on dashboard page after Login Student
  Then  Admin should not see select batch id text
  
  @StudentPage_TC0021
- Scenario: Validate select student name using search box
+ Scenario Outline: Validate select student name using search box
  Given  Admin is on student details page
  When  Admin clicks select student name and enters "<Sheetname>" and "<row>"  alphabet in the search box
  Then  Admin should see student name start with "<Sheetname>" and "<row>"  is listed below
@@ -135,7 +135,7 @@ Given Admin is on dashboard page after Login Student
  
  
  @StudentPage_TC0022
- Scenario: Validate select batch id using search box
+ Scenario Outline: Validate select batch id using search box
  Given  Admin is on student details page
  When  Admin clicks select batch id and enter "<Sheetname>" and "<row>" number in the search box
  Then  Admin should see batch id start with "<Sheetname>" and "<row>" is listed below
@@ -145,7 +145,7 @@ Given Admin is on dashboard page after Login Student
  |Student|1|
  
  @StudentPage_TC0023
- Scenario: Validate selecting only student name will not display any details
+ Scenario Outline: Validate selecting only student name will not display any details
  Given  Admin is on student details page
  When  Admin selects only student name  "<Sheetname>" and "<row>"
  Then  Student details should not be displayed
@@ -154,7 +154,7 @@ Given Admin is on dashboard page after Login Student
  |Student|0|
   
  @StudentPage_TC0024
- Scenario: Validate selecting only batch id will not display any details
+ Scenario Outline: Validate selecting only batch id will not display any details
  Given Admin is on student details page
  When Admin selects only batch id "<Sheetname>" and "<row>"
  Then Student details shouldn't be displayed
@@ -164,7 +164,7 @@ Given Admin is on dashboard page after Login Student
  
  @StudentPage_TC0025
  
- Scenario: Validate selecting student name and batch id
+ Scenario Outline: Validate selecting student name and batch id
  Given Admin is on student details page
  When Admin selects student name and batch id "<Sheetname>" and "<row>"
  Then Particular student informations should be display

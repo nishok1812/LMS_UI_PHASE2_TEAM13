@@ -25,44 +25,44 @@ public class BatchPage_SD {
 		BatchPO = new BatchPage_PO(driver);
 	}
 
-	@Given("Admin is on dashboard page after Login in LMS portal")
-	public void admin_is_on_dashboard_page_after_login_in_lms_portal() {
+	@Given("LMSBatchLMSBatchAdmin is on dashboard page after Login in LMS portal")
+	public void LMSBatchLMSBatchAdmin_is_on_dashboard_page_after_login_in_lms_portal() {
 		driver.get(dashbaordUrl);
 	}
 
-	@When("Admin clicks {string} from navigation bar")
-	public void admin_clicks_from_navigation_bar(String string) {
+	@When("LMSBatchLMSBatchAdmin clicks {string} from navigation bar")
+	public void LMSBatchLMSBatchAdmin_clicks_from_navigation_bar(String string) {
 		BatchPO.clickonBatchTab();
 	}
 
-	@Then("Admin should see the {string} in the URL")
-	public void admin_should_see_the_in_the_url() {
+	@Then("LMSBatchLMSBatchAdmin should see the {string} in the URL")
+	public void LMSBatchLMSBatchAdmin_should_see_the_in_the_url() {
 		BatchPO.batchTitle();
 	}
 
-	@Then("Admin should see the {string} in the header")
-	public void admin_should_see_the_in_the_header(String string) {
+	@Then("LMSBatchLMSBatchAdmin should see the {string} in the header")
+	public void LMSBatchLMSBatchAdmin_should_see_the_in_the_header(String string) {
 		BatchPO.getBatchHeader();
 	}
 
-	@Then("Admin should see the pagination controls under the data table")
-	public void admin_should_see_the_pagination_controls_under_the_data_table() {
+	@Then("LMSBatchLMSBatchAdmin should see the pagination controls under the data table")
+	public void LMSBatchLMSBatchAdmin_should_see_the_pagination_controls_under_the_data_table() {
 		BatchPO.getBatchPaginatorText();
 	}
 
-	@Then("Admin Should see the data table with headers Batch name, Batch Description,Batch Status, No of classes, Program Name, Edit\\/Delete")
-	public void admin_should_see_the_data_table_with_headers_batch_name_batch_description_batch_status_no_of_classes_program_name_edit_delete() {
+	@Then("LMSBatchLMSBatchAdmin Should see the data table with headers Batch name, Batch Description,Batch Status, No of classes, Program Name, Edit\\/Delete")
+	public void LMSBatchLMSBatchAdmin_should_see_the_data_table_with_headers_batch_name_batch_description_batch_status_no_of_classes_program_name_edit_delete() {
 
 		Assert.assertTrue(true);
 	}
 
-	@Then("Admin should be able to see the {string} icon button that is disabled")
-	public void admin_should_be_able_to_see_the_icon_button_that_is_disabled(String string) {
+	@Then("LMSBatchLMSBatchAdmin should be able to see the {string} icon button that is disabled")
+	public void LMSBatchLMSBatchAdmin_should_be_able_to_see_the_icon_button_that_is_disabled(String string) {
 		BatchPO.verifyDeleteButton();
 	}
 
-	@Then("Admin should be able to see the {string} button")
-	public void admin_should_be_able_to_see_the_button(String string) {
+	@Then("LMSBatchLMSBatchAdmin should be able to see the {string} button")
+	public void LMSBatchLMSBatchAdmin_should_be_able_to_see_the_button(String string) {
 		BatchPO.clickAddNewBatch();
 	}
 
@@ -81,8 +81,8 @@ public class BatchPage_SD {
 		BatchPO.isBatchDetailsPopupVisible();
 	}
 
-	@Given("A new pop up with Batch details appears Before Admin is on dashboard page after Login admin clicks \"\"Batch\"\" from navigation bar admin clicks {string}+ A New Batch\"\" button")
-	public void a_new_pop_up_with_batch_details_appears_before_admin_is_on_dashboard_page_after_login_admin_clicks_batch_from_navigation_bar_admin_clicks_a_new_batch_button(
+	@Given("A new pop up with Batch details appears Before LMSBatchLMSBatchAdmin is on dashboard page after Login LMSBatchLMSBatchAdmin clicks \"\"Batch\"\" from navigation bar LMSBatchLMSBatchAdmin clicks {string}+ A New Batch\"\" button")
+	public void a_new_pop_up_with_batch_details_appears_before_LMSBatchLMSBatchAdmin_is_on_dashboard_page_after_login_LMSBatchLMSBatchAdmin_clicks_batch_from_navigation_bar_LMSBatchLMSBatchAdmin_clicks_a_new_batch_button(
 			String string) {
 		BatchPO.isBatchDetailsPopupVisible();
 	}
@@ -119,14 +119,14 @@ public class BatchPage_SD {
 		BatchPO.ExcelReader(sheetName, rowNo);
 	}
 
-	@Given("The delete icon on row level in data table is enabled before admin is on dashboard page after Login admin clicks {string} from navigation bar")
-	public void the_delete_icon_on_row_level_in_data_table_is_enabled_before_admin_is_on_dashboard_page_after_login_admin_clicks_from_navigation_bar(
+	@Given("The delete icon on row level in data table is enabled before LMSBatchLMSBatchAdmin is on dashboard page after Login LMSBatchLMSBatchAdmin clicks {string} from navigation bar")
+	public void the_delete_icon_on_row_level_in_data_table_is_enabled_before_LMSBatchLMSBatchAdmin_is_on_dashboard_page_after_login_LMSBatchLMSBatchAdmin_clicks_from_navigation_bar(
 			String string) {
 		BatchPO.areDeleteButtonsVisibleinEachRow();
 	}
 
-	@When("Admin clicks the delete icon")
-	public void admin_clicks_the_delete_icon() {
+	@When("LMSBatchLMSBatchAdmin clicks the delete icon")
+	public void LMSBatchLMSBatchAdmin_clicks_the_delete_icon() {
 		BatchPO.isDeleteBtnPresent();
 	}
 
@@ -135,8 +135,8 @@ public class BatchPage_SD {
 		BatchPO.confirmAlert();
 	}
 
-	@Given("Admin clicks the delete icon before admin is on dashboard page after Login admin clicks {string} from navigation bar")
-	public void admin_clicks_the_delete_icon_before_admin_is_on_dashboard_page_after_login_admin_clicks_from_navigation_bar(
+	@Given("LMSBatchLMSBatchAdmin clicks the delete icon before LMSBatchLMSBatchAdmin is on dashboard page after Login LMSBatchLMSBatchAdmin clicks {string} from navigation bar")
+	public void LMSBatchLMSBatchAdmin_clicks_the_delete_icon_before_LMSBatchLMSBatchAdmin_is_on_dashboard_page_after_login_LMSBatchLMSBatchAdmin_clicks_from_navigation_bar(
 			String string) {
 		BatchPO.clickDeleteButtonTop();
 	}
@@ -151,18 +151,18 @@ public class BatchPage_SD {
 		BatchPO.dismissAlert();
 	}
 
-	@Given("None of the checkboxes in data table are selected before admin is on dashboard page after Login admin clicks \"\"Batch\"\" from navigation bar")
-	public void none_of_the_checkboxes_in_data_table_are_selected_before_admin_is_on_dashboard_page_after_login_admin_clicks_batch_from_navigation_bar() {
+	@Given("None of the checkboxes in data table are selected before LMSBatchLMSBatchAdmin is on dashboard page after Login LMSBatchLMSBatchAdmin clicks \"\"Batch\"\" from navigation bar")
+	public void none_of_the_checkboxes_in_data_table_are_selected_before_LMSBatchLMSBatchAdmin_is_on_dashboard_page_after_login_LMSBatchLMSBatchAdmin_clicks_batch_from_navigation_bar() {
 		BatchPO.isCheckboxEnabled();
 	}
 
-	@Then("The delete icon under the {string} header should be disabled")
-	public void the_delete_icon_under_the_header_should_be_disabled(String string) {
+	@Then("The delete icon under the {string} header should be disabled1")
+	public void the_delete_icon_under_the_header_should_be_disabled1(String string) {
 		BatchPO.isDeleteOnTopEnabled();
 	}
 
-	@Given("One of the checkbox\\/ row is selected before admin is on dashboard page after Login admin clicks \"\"Batch\"\" from navigation bar")
-	public void one_of_the_checkbox_row_is_selected_before_admin_is_on_dashboard_page_after_login_admin_clicks_batch_from_navigation_bar() {
+	@Given("One of the checkbox\\/ row is selected before LMSBatchLMSBatchAdmin is on dashboard page after Login LMSBatchLMSBatchAdmin clicks \"\"Batch\"\" from navigation bar")
+	public void one_of_the_checkbox_row_is_selected_before_LMSBatchLMSBatchAdmin_is_on_dashboard_page_after_login_LMSBatchLMSBatchAdmin_clicks_batch_from_navigation_bar() {
 		BatchPO.isSingleCheckbox();
 	}
 
@@ -176,13 +176,13 @@ public class BatchPage_SD {
 		BatchPO.confirmDelete(string);
 	}
 
-	@Given("The edit icon on row level in data table is enabled before admin is on dashboard page after Login admin clicks \"\"Batch\"\" from navigation bar")
-	public void the_edit_icon_on_row_level_in_data_table_is_enabled_before_admin_is_on_dashboard_page_after_login_admin_clicks_batch_from_navigation_bar() {
+	@Given("The edit icon on row level in data table is enabled before LMSBatchLMSBatchAdmin is on dashboard page after Login LMSBatchLMSBatchAdmin clicks \"\"Batch\"\" from navigation bar")
+	public void the_edit_icon_on_row_level_in_data_table_is_enabled_before_LMSBatchLMSBatchAdmin_is_on_dashboard_page_after_login_LMSBatchLMSBatchAdmin_clicks_batch_from_navigation_bar() {
 		BatchPO.areEditButtonsVisibleinechRow();
 	}
 
-	@When("Admin clicks the <edit> icon")
-	public void admin_clicks_the_edit_icon() {
+	@When("LMSBatchLMSBatchAdmin clicks the <edit> icon")
+	public void LMSBatchLMSBatchAdmin_clicks_the_edit_icon() {
 		BatchPO.verifyEditButton();
 	}
 
