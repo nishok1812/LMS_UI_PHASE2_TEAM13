@@ -83,13 +83,16 @@ public void Verify_LMS_title_alignment() {
 
 @Then("Validate navigation bar text")
 public void Validate_navigation_bar_text(){
+	String actualtext= dashboard.getNavigationBarText();
+	String ExpText= "";
+	Assert.assertEquals(actualtext, ExpText);
 	LOG.info("Validate navigation bar text");
 }
 
 @Then ("Validate LMS title has correct spelling ang space")
 public void Validate_LMS_title_has_correct_spelling_ang_space() {
 	
-	boolean isTextValid = dashboard.validateTextSpellingAndSpacing();
+	boolean isTextValid = dashboard.validateTextSpellingAndSpacing(null);
 	if (isTextValid) {
         System.out.println("All text is valid.");
     } else {
@@ -135,5 +138,54 @@ public void  Verify_Logout_button_function() {
 	
 }
 
+@Then("Admin should see Student in the 1st place")
+public void admin_should_see_student_in_the_1st_place() {
+	dashboard.getStudentAtPosition1(1);
+	Assert.assertEquals(dashboard.getStudentAtPosition1(1), "1");
+}
+
+@Then("Admin should see Program in the 2nd place")
+public void admin_should_see_program_in_the_2nd_place() {
+	dashboard.getprogramAtPosition2(2);
+	Assert.assertEquals(dashboard.getprogramAtPosition2(2), "2");
+}
+
+@Then("Admin should see Batch in the 3rd place")
+public void admin_should_see_batch_in_the_3rd_place() {
+	dashboard.getBatchAtPosition3(3);
+	Assert.assertEquals(dashboard.getBatchAtPosition3(3), "3");
+}
+
+@Then("Admin should see Class in the 4th place")
+public void admin_should_see_class_in_the_4th_place() {
+	dashboard.getclassAtPosition4(4);
+	Assert.assertEquals(dashboard.getclassAtPosition4(4), "4");
+    
+}
+
+@Then("Admin should see User in the 5th place")
+public void admin_should_see_user_in_the_5th_place() {
+	dashboard.getuserAtPosition(5);
+	Assert.assertEquals(dashboard.getuserAtPosition(5), "5");
+   
+}
+
+@Then("Admin should see Assignment in the 6th place")
+public void admin_should_see_assignment_in_the_6th_place() {
+	dashboard.getAssignmentAtPosition6(6);
+	Assert.assertEquals(dashboard.getAssignmentAtPosition6(6), "6");
+}
+
+@Then("Admin should see Attendance in the 7th place")
+public void admin_should_see_attendance_in_the_7th_place() {
+	dashboard.getAttandancePosition7(7);
+	Assert.assertEquals(dashboard.getAttandancePosition7(7), "7");  
+}
+
+@Then("Admin should see Logout in the 8th place")
+public void admin_should_see_logout_in_the_8th_place() {
+	dashboard.getLogoutAtPosition8(8);
+	Assert.assertEquals(dashboard.getLogoutAtPosition8(8), "8");
+}
 	
 }
