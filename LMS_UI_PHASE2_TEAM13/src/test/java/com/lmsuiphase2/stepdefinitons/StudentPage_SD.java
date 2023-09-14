@@ -1,479 +1,307 @@
-package com.lmsuiphase2.pageobjects;
-
-//import static org.testng.Assert.assertEquals;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-//import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
-//import com.lmsuiphase2.utilities.ExcelUtils;
-//import com.lmsuiphase2.apphooks.Hooks;
-//import com.lmsuiphase2.driverfactory.DriverFactory;
-//import com.lmsuiphase2.pageobjects.StudentPage_PO;
-//import com.lmsuiphase2.utilities.CommonUtils;
-//import com.lmsuiphase2.pageobjects.Common_PO;
-//import com.thoughtworks.qdox.model.expression.GreaterEquals;
-
-//import io.cucumber.java.en.Given;
-//import io.cucumber.java.en.Then;
-//import io.cucumber.java.en.When;
+package com.lmsuiphase2.stepdefinitons;
+//import static org.junit.Assert.assertEquals;
 
 //import java.util.List;
 
-//import io.netty.handler.timeout.TimeoutException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
-public class StudentPage_PO {
+import com.lmsuiphase2.apphooks.Hooks;
+import com.lmsuiphase2.pageobjects.Common_PO;
+//import com.lmsuiphase2.pageobjects.DashboardPage_PO;
+import com.lmsuiphase2.pageobjects.StudentPage_PO;
+//import com.lmsuiphase2.pageobjects.StudentPage_SD;
+//import com.lmsuiphase2.utilities.CommonUtils;
 
-WebDriver driver;
-	
-	private static final Logger LOG= LogManager.getLogger(StudentPage_PO.class);
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
-	public static final String DashboardPageUrl = "https://lms.herokuapp.com/dashboard/";;
 
-		
-	
-	@FindBy		(xpath = "//h2[text()='Manage Program']") WebElement programHeader;
-	@FindBy	(xpath = "") WebElement  programFooter;
-	@FindBy	(xpath = "")WebElement paginatorText;
-	@FindBy	(xpath = "") WebElement StudentTab;
-	@FindBy (id="") WebElement SelectStudentName;
-	@FindBy (id="") WebElement SelectbatchId;
-	@FindBy (linkText = "Class") WebElement ClassLink;
-	@FindBy (linkText = "Student") WebElement StudentLink;
-	@FindBy (linkText = "Program") WebElement ProgramLink;
-	@FindBy (linkText = "Batch") WebElement BatchLink;
-	@FindBy (linkText = "User") WebElement UserLink;
-	@FindBy (linkText = "Attendance") WebElement AttendanceLink;
-	@FindBy (linkText = "Assignment") WebElement Assignment;
-	@FindBy (xpath="//button[@type='button']") WebElement AddNewClass;
-	@FindBy (xpath="//button1[@type='button']") WebElement DeleteAll;
-	@FindBy (xpath="//*[@id='oldSelectMenu']")WebElement StudentDropdown;
-	@FindBy (xpath="//*[@id='oldSelectMenu']")WebElement BatchIdDropdown;
-	@FindBy (id="searchbox") WebElement SearchBox;
-	
-	String title;
-    
-    XSSFWorkbook workbook;
-	XSSFSheet sheet;
-	XSSFCell cell;
-	XSSFRow row;
-    public String expectedUrl = "https://lms.herokuapp.com/student/";
-	//String excelpath = "src\\test\\resources\\data\\Datavalues.xlsx";
-	//Excelreader reader = new Excelreader();	
-	//LinkedHashMap<String, String> testdata;
-    
-    public StudentPage_PO(WebDriver driver) {
-    	this.driver = driver;
-		PageFactory.initElements(driver, this);
-		Actions act = new Actions(driver);
-			}
-    
-    public void clickStudentLink()
+
+public class StudentPage_SD {
+
+private static final Logger log= LogManager.getLogger(StudentPage_SD.class);
+	private WebDriver driver;
+	public static StudentPage_PO sd;
+	public static Common_PO cmpo;
+	//commonObj= new Common_PO(driver);
+
+	public StudentPage_SD()
 	{
-    	StudentLink.click();
+	  driver = Hooks.getDriver();
+	 sd =  new StudentPage_PO(driver);
+	 cmpo = new Common_PO();
 	}
-    
-//    public void StudentNavigaTime()
-//    {
-//    timeBeforePageLoad = System.currentTimeMillis();
-//	student_Link.click();
-//	timeAfterPageLoad = System.currentTimeMillis();
-//	timeTakenForPageLoad = timeAfterPageLoad - timeBeforePageLoad;
-//    }
-    
-    public void isDropdownDisplayed()
-    {
-    	boolean search= StudentDropdown.isDisplayed();
+
+	
+	@Given("Admin is on dashboard page after Login Student")
+	public void admin_is_on_dashboard_page_after_login_student() {
+		driver.get(StudentPage_PO.DashboardPageUrl);
 	}
-    
-    public  void StudentBrokenLinksValidation() {
-        
-   	 List<WebElement> links = driver.findElements(By.tagName("a")); // Find all the links on the dashboard page using the anchor <a> tag
-for (WebElement link : links) {  // Iterate through the links and validate them
-           String url = link.getAttribute("href");
-           if (url != null && !url.isEmpty()) {
-               try {
-                   // Create a URL object
-                   URL linkUrl = new URL(url);
 
-                   // Open a connection to the URL
-                   HttpURLConnection connection = (HttpURLConnection) linkUrl.openConnection();
-                   connection.setRequestMethod("HEAD");
+	@When("Admin clicks {string} on the navigation bar")
+	public void admin_clicks_on_the_navigation_bar(String string) {
+		sd.clickStudentLink();
+	}
 
-                   // Get the HTTP response code
-                   int responseCode = connection.getResponseCode();
-
-                   // Check for broken links (response code other than 200 OK)
-                   if (responseCode != 200) {
-                       System.out.println("Broken Link Found: " + url + " (HTTP Response Code: " + responseCode + ")");
-                   }
-
-                   // Close the connection
-                   connection.disconnect();
-               } catch (IOException e) {
-                   e.printStackTrace();
-               }
-           }
-       }
-
-      }
-//    //public boolean StudentvalidateTextSpellingAndSpacing(List<WebElement> lmsTextTitles) {
-//        boolean allTextValid = true;
-//
-//        for (WebElement lmsTextTitle : lmsTextTitles) {
-//            try {
-//                String text = lmsTextTitle.getText();
-//
-//                
-//            //    boolean isSpellingValid = isSpacingValid(text);
-//
-//                
-//             //   boolean isSpacingValid = isSpacingValid(text); 
-//
-//              //  if (!isSpellingValid || !isSpacingValid) {
-//                 
-//                    System.out.println("Text validation issues in: " + text); // Log the validation issues
-//                    allTextValid = false;
-//                }
-//            } catch (Exception e) { // Handle any exceptions that may occur during text retrieval
-//                
-//                System.out.println("Error while processing text: " + e.getMessage());
-//                allTextValid = false;
-//            }
-//        }
-//
-//        return allTextValid;
-//    }
-//    
-    public void verifyColorStudent() {
-
-		WebElement StudentnameColor = driver.findElement(By.id("04"));
-
-		String colorCode = StudentnameColor.getCssValue("color");
-
-		System.out.println("Color code is" + colorCode);
-
-		String expectedColorCode = "gray";
-		Assert.assertEquals(colorCode, expectedColorCode);
-		// Asserting actual and expected color codes
+	@Then("Admin should see the Student details Page Title")
+	public void admin_should_see_the_student_details_page_title() {
+		String Studentheader=Common_PO.getHeader();
 		
-
+		String ExpectedHeader = sd.expectedUrl;
+		Assert.assertEquals(Studentheader, ExpectedHeader);
 	}
 
-	public void verifyColorBatch() {
-
-		WebElement BatchIdColor = driver.findElement(By.id("04"));
-
-		String colorCode = BatchIdColor.getCssValue("color");
-
-		System.out.println("Color code is" + colorCode);
-
-		String expectedColorCode = "gray";
-		Assert.assertEquals(colorCode, expectedColorCode);
-		// Asserting actual and expected color codes
-		
-
-		
+	@Then("Maximum navigation time in milliseconds, defaults to {int} seconds on student page")
+	public void maximum_navigation_time_in_milliseconds_defaults_to_seconds_on_student_page(Integer int1) {
+	  //  int Nav_time = cmpo.navigationPageLoadTime(1);
+	    //Assert.assertEquals(Nav_time,3 );
 	}
+
+	@Then("HTTP response >= {int} then link is broken on student page")
+	public void http_response_then_link_is_broken_on_student_page(Integer int1) {
+	 sd.StudentBrokenLinksValidation();
+	}
+
+	@Then("Admin should see LMS -Learning management system as title on student page")
+	public void admin_should_see_lms_learning_management_system_as_title_on_student_page() {
+		String actURL=driver.getCurrentUrl();
+		   String expPURL= "";
+		   Assert.assertEquals(actURL, expPURL); 
+	}
+
+	@Then("Student Detail title should be in centre of the page")
+	public void student_detail_title_should_be_in_centre_of_the_page() {
+	   
+	}
+
+	@Then("{int} dropdowns should be present in the page on student page")
+	public void dropdowns_should_be_present_in_the_page_on_student_page(Integer int1) {
+		sd.isDropdownDisplayed();
+	//  Boolean Pagedrop = sd.findDropdownElement();
+	  
+	//  assertEquals(false, Pagedrop);
+	}
+
+	@Then("Admin should see search box inside the drop down on student page")
+	public void admin_should_see_search_box_inside_the_drop_down_on_student_page() {
+
+	
+	sd.SearchboxStudentName();
+	}
+
+	@Then("Admin should see search box inside batch id drop down on student page")
+	public void admin_should_see_search_box_inside_batch_id_drop_down_on_student_page() {
     
-	public void BatchiddropDownNo() {
-
-		String arr[] = { "Select", "01", "02", "03" };
-		WebElement dropDownBid = driver.findElement(By.id("02"));
-		Select s = new Select(dropDownBid);
-		List<WebElement> options = s.getOptions();
-		boolean match = false;
-		for (int i = 0; i < options.size(); i++) {
-			System.out.println(options.get(i).getText() + " == " + arr[i]);
-			if (options.get(i).getText().equals(arr[i])) {
-
-				match = true;
-			}
-
-			Assert.assertTrue(match);
-		}
+		sd.SearchboxBatchId();
 	}
+
+	//@Then("Admin should see correct spelling select student name on student page")
+	//public void admin_should_see_correct spelling_select_student_name_on_student_page() {
+	  // sd.StudentvalidateTextSpellingAndSpacing(null);
+	//}
+
+	@Then("Admin should see correct spelling select batch id text on student page")
+	public void admin_should_see_correct_spelling_select_batch_id_text_on_student_page() {
+	  //sd.StudentvalidateTextSpellingAndSpacing(null) ;
+	}
+
+	@Then("Admin should see only numbers inside batch id drop down on student page")
+	public void admin_should_see_only_numbers_inside_batch_id_drop_down_on_student_page() {
+	    sd.BatchiddropDownNo();
+	}
+
+	@Then("Admin should see select student name in gray color on student page")
+	public void admin_should_see_select_student_name_in_gray_color_on_student_page() {
 	
-	public void studentDropDownLabel() {
-
-		WebElement StudentDDLabel = driver.findElement(By.name("name"));
-		System.out.println("Name of the Email Textbox is:- " + StudentDDLabel.getAttribute("Select Student Name"));
-	}
-	public void batchidDropDownLabel() {
-
-		WebElement batchidlabel = driver.findElement(By.name("name"));
-		System.out.println("Name of the Email Textbox is:- " + batchidlabel.getAttribute("Select Batch Id"));
-	}
-	
-	public void DropdownscrollDownStudent() {
-
-		WebElement targetElement = driver.findElement(By.id(""));
-
-		Actions actions = new Actions(driver);
-		actions.scrollToElement(targetElement).perform();
+		sd.verifyColorStudent();
 	}
 
-	
-	public void DropdownscrollDownbatchId() {
-
-		WebElement targetElementbatch = driver.findElement(By.id(""));
-
-		Actions actions = new Actions(driver);
-		actions.scrollToElement(targetElementbatch).perform();
+	@Then("Admin should see select batch ID in gray color on student page")
+	public void admin_should_see_select_batch_id_in_gray_color_on_student_page() {
+		//Assert.assertEquals(colorCode, expectedColorCode);
+		sd.verifyColorBatch();
 	}
-	
-	public void TexttoSearch(String SearchField, String ReturnField)
+
+	@Then("Admin should see select student name in first on student page")
+	public void admin_should_see_select_student_name_in_first_on_student_page() {
+	   //sd.spellcheck_student();
+	 //  Assert.assertEquals(retirveValue,StudentName);
+		sd.studentDropDownLabel();
+	}
+
+	@Then("Admin should see select batch id in second on student page")
+	public void admin_should_see_select_batch_id_in_second_on_student_page() {
+	   sd.batchidDropDownLabel();
+	}
+
+	@Then("Admin should able to scroll down to select the name on student page")
+	public void admin_should_able_to_scroll_down_to_select_the_name_on_student_page() {
+	   sd.DropdownscrollDownStudent();
+	}
+
+	@Then("Admin should able to scroll down to select the batch id on student page")
+	public void admin_should_able_to_scroll_down_to_select_the_batch_id_on_student_page() {
+	   sd.DropdownscrollDownbatchId();
+	}
+
+	@Given("Admin is on student details page Student")
+	public void admin_is_on_student_details_page_student() {
+	//	dashboard.clickOnStudentTab();
+		sd.clickStudentLink();
+	}
+
+	@When("Admin select student name from the drop down")
+	public void admin_select_student_name_from_the_drop_down() {
+	    sd. SelectStudentName();
+	}
+
+	@Then("Admin shouldnot see select student name text")
+	public void admin_shouldnot_see_select_student_name_text()
+		
 	{
-		WebElement searchBox = driver.findElement(By.id("searchbox")); // Replace with the actual ID of the search box
-	    searchBox.clear();
-	    searchBox.sendKeys(SearchField);
-	 
-	}
-	
-public void SearchboxBatchId() {
 		
-		WebElement SearchBoxBatchid = driver.findElement(By.xpath("//div[@id='peopleglobalsearchbox']//input"));
-
-		if (SearchBoxBatchid.isDisplayed()) {
-			System.out.println("Search button is enabled " + SearchBoxBatchid.isDisplayed());
-		} else {
-			System.out.println("Search button is enabled" + SearchBoxBatchid.isDisplayed());
-		}
-
-		// Verify that the “Search” Box is enabled
-		if (SearchBoxBatchid.isEnabled()) {
-			System.out.println("Search button is enabled " + SearchBoxBatchid.isEnabled());
-			SearchBoxBatchid.sendKeys("Selenium");
-		} else {
-			System.out.println("SSearch button is enabled " + SearchBoxBatchid.isEnabled());
-		}
-
-		System.out.println("Successful Execution of Test.");
-
 	}
 
-public void SearchboxStudentName() {
-	WebElement SearchboxStudentName= driver.findElement(By.xpath("//div[@id='peopleglobalsearchbox']//input"));
-
-		if (SearchboxStudentName.isDisplayed()) {
-			System.out.println("Search button is enabled " + SearchboxStudentName.isDisplayed());
-		} else {
-			System.out.println("Search button is enabled" + SearchboxStudentName.isDisplayed());
-		}
-
-		// Verify that the “Search” Box is enabled
-		if (SearchboxStudentName.isEnabled()) {
-			System.out.println("Search button is enabled " + SearchboxStudentName.isEnabled());
-			SearchboxStudentName.sendKeys("Selenium");
-		} else {
-			System.out.println("SSearch button is enabled " + SearchboxStudentName.isEnabled());
-		}
-
-		System.out.println("Successful Execution of Test.");
-
+	@Given("Admin is on student details page")
+	public void admin_is_on_student_details_page() {
+		//dashboard.clickOnStudentTab();
+		sd.clickStudentLink();
 	}
 
-public void SelectStudentName()	{
-	
+	@When("Admin select batch id from the drop down")
+	public void admin_select_batch_id_from_the_drop_down() {
+	  sd.SelectBatchId();
+	}
+
+	@Then("Admin should not see select batch id text")
+	public void admin_should_not_see_select_batch_id_text() {
+	  
+	}
+
+	@When("Admin clicks select student name and enters {string} and {string}  alphabet in the search box")
+	public void admin_clicks_select_student_name_and_enters_and_alphabet_in_the_search_box(String string, String string2) {
+	  // sd.Alphabetinsearch();
+	}
+
+	@Then("Admin should see student name start with {string} and {string}  is listed below")
+	public void admin_should_see_student_name_start_with_and_is_listed_below(String string, String string2) {
+	   //sd.RetriveName();
+	  // Assert.assertEquals(SelectStudentName,retiveValue );
+	}
+
+	@When("Admin clicks select batch id and enter {string} and {string} number in the search box")
+	public void admin_clicks_select_batch_id_and_enter_and_number_in_the_search_box(String string, String string2) {
+	//  sd.RetriveID();
 	 
-	 Select select = new Select(driver.findElement(By.xpath("//select")));
-	 WebElement option = select.getFirstSelectedOption();
-	 
-// WebElement option1 = select.selectByIndex(1);
-	 String defaultItem = option.getText();
-	 System.out.println(defaultItem );
-}
+	}
 
-public void SelectBatchId() {
-	 Select select = new Select(driver.findElement(By.xpath("//batch")));
-	 WebElement option = select.getFirstSelectedOption();
-	 
-// WebElement option1 = select.selectByIndex(1);
-	 String defaultItem = option.getText();
-	 System.out.println(defaultItem );
+	//@Then("Admin should see batch id start with {string} and {string} is listed below")
+	//{
+		//sd.RetriveID();
+	//	 Assert.assertEquals(SelectbatchId,retiveValue );
+	//}
 
-}
-//public void SelectStudentName()
-//{
+	@When("Admin selects only student name  {string} and {string}")
+	public void admin_selects_only_student_name_and(String string, String string2) {
+	   // sd.OnlyStudentName();
+	}
+
+	@Then("Student details should not be displayed")
+	public void student_details_should_not_be_displayed() {
+		// Assert.assertEquals(SelectStudentName,0 );
+	}
+
+	@When("Admin selects only batch id {string} and {string}")
+	public void admin_selects_only_batch_id_and(String string, String string2) {
+		 //sd.OnlyBatchID();
+	}
+
+	@Then("Student details shouldn't be displayed")
+	public void student_details_shouldn_t_be_displayed() {
+		 //Assert.assertEquals(SelectbatchId,0 );
+	}
+
+	@When("Admin selects student name and batch id {string} and {string}")
+	public void admin_selects_student_name_and_batch_id_and(String string, String string2) {
+	    //sd.BothNameID();
+	    
+	}
+
+	@Then("Particular student informations should be display")
+	public void particular_student_informations_should_be_display() {
+		cmpo.navigationClick("Student");
+	}
+
+	@When("Admin clicks on program link on student page")
+	public void admin_clicks_on_program_link_on_student_page() {
+		cmpo.navigationClick("Program");
+	}
+
 	
-//String retiveValue = select.selectByIndex(0);
-//	System.out.println("retriveValue");
-//}
-    //===================================================================================//
-//	public void StudentDropdowndatatype()
-//	{
-//		//List<WebElement> rows = driver.findElements(By.xpath("/tbody/tr"));
-//		//Select objSelect = new Select(driver.findElements(By.id(SelectStudentName)));
-//		//objSelect.getAllSelectedOptions();
-//	}
-//	
-////	public void Login()
-////	{
-////		driver.get(loginPageURL);
-////	}
-////	
-//	public void batchDropdowndatatype()
-//	{
-//		//WebElement objSelect =  (WebElement) driver.findElements(By.id("StudentName"));
-//		//objSelect.getAllSelectedOptions();
-//		
-//	}
-//	
-//	
-//	
-//	
-//
-//	
 	
-//		
-//	
-//	
-//
-//	public void SelectBatchId() {
-//		
-//		{
-//			String retiveValue = Select.selectByIndex(0);
-//			System.out.println("retriveValue");
-//		}
-//	}
-//
-//	
-////	}
-//	
-//
-//	public Boolean findDropdownElement() {
-//		// TODO Auto-generated method stub
-//By elementLocator = By.id("StudentID");
-//		
-//
-//
-//		try {
-//		    wait.until(ExpectedConditions.presenceOfElementLocated(elementLocator));
-//		    System.out.println("Element exists");
-//		} catch (TimeoutException e) {
-//		    System.out.println("Element does not exist");
-//		}
-//		return null;
-//	}
-//
-//	public void spellcheck_student() {
-//		
-//		string StudentName ; 
-//
-//		String excelpath = "src\\test\\resources\\data\\Datavalues.xlsx";
-//		Excelreader reader = new Excelreader();	
-//		LinkedHashMap<String, String> testdata;
-//		testdata = reader.readexcelsheet(excelpath,Student,0);
-//		StudentName = testdata.get("StudentName");
-//		
-//	SelectStudentName.sendKeys("StudentName");
-//	 String retiveValue = Select.selectByIndex(0);
-//	
-//	
-//	
-//	
-//	}
-//
-////	public void Dropdownscrolldown() {
-////		// TODO Auto-generated method stub
-////		List<WebElement> rows = driver.findElements(By.id("StudentName"));
-////		for(int=i;i<rows.size();i++)
-////		{
-////			{ 
-////				 
-////			       String value=  locator.getText();
-////			    {
-////			    action.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
-////			    
-////			    if(value.equalsIgnoreCase("x"))
-////			                {
-////			                    
-////			                    break;
-////			                }
-////			                else
-////			                {
-////			                	WebElement.click();
-////			                }
-////			    }
-////			
-////		}
-////	}
-////}
-//
-//	
-//	public void Alphabetinsearch() {
-//		
-//		testdata = reader.readexcelsheet(excelpath,Student,4);
-//		SelectStudentName = testdata.get("StudentName");
-//		
-//	SelectStudentName.sendKeys("SelectStudentName");
-//	
-//	}
-//
-//	public void RetriveName() {
-//		
-//		SelectStudentName.sendKeys("StudentName");
-//		 String retiveValue = Select.selectByIndex(0);
-//	}
-//
-//	public void RetriveID() {
-//		
-//		
-//		testdata = reader.readexcelsheet(excelpath,Student,2);
-//		SelectbatchId = testdata.get("BatchID");
-//		
-//		SelectbatchId .sendKeys("SelectbatchId ");
-//		String retiveValue = Select.selectByIndex(0);
-//	}
-//
-//	public void OnlyStudentName() {
-//		
-//		testdata = reader.readexcelsheet(excelpath,Student,0);
-//		SelectStudentName = testdata.get("StudentName");
-//		String retiveValue = Select.selectByIndex(0);
-//	}
-//
-//	public void OnlyBatchID() {
-//		
-//		testdata = reader.readexcelsheet(excelpath,Student,2);
-//		SelectbatchId = testdata.get("BatchID");
-//		
-//		SelectbatchId .sendKeys("SelectbatchId ");
-//		String retiveValue = Select.selectByIndex(0);
-//	}
-//
-//	public void BothNameID() {
-//		
-//		SelectbatchId = testdata.get("BatchID");
-//		SelectStudentName = testdata.get("StudentName");
-//		SelectbatchId .sendKeys("SelectbatchId ");
-//		SelectStudentName.sendKeys("SelectStudentName");
-//		String retiveValue = Select.selectByIndex(0);
-//		
-//	}
-//	
-//}
 
-public void StudentvalidateTextSpellingAndSpacing(Object object) {
-	// TODO Auto-generated method stub
-	
-}
+	@When("Admin clicks on Batch link on student page")
+	public void admin_clicks_on_batch_link_on_student_page() {
+		cmpo.navigationClick("Batch");
+	}
 
+	@Then("Admin is redirected to Batch page")
+	public void admin_is_redirected_to_batch_page() {
+	  
+	}
+
+	@When("Admin clicks on Class link on student page")
+	public void admin_clicks_on_class_link_on_student_page() {
+		cmpo.navigationClick("Class");
+	}
+
+	@Then("Admin is redirected to Class page")
+	public void admin_is_redirected_to_class_page() {
+	   
+	}
+
+	@When("Admin clicks on User link on student page")
+	public void admin_clicks_on_user_link_on_student_page() {
+		cmpo.navigationClick("User"); 
+	}
+
+	@Then("Admin is redirected to User page")
+	public void admin_is_redirected_to_user_page() {
+	   
+	}
+
+	@When("Admin clicks on Assignment link on student page")
+	public void admin_clicks_on_assignment_link_on_student_page() {
+		cmpo.navigationClick("Assignment");
+	}
+
+	@Then("Admin is redirected to Assignment page")
+	public void admin_is_redirected_to_assignment_page() {
+	  
+	}
+
+	@When("Admin clicks on Attendance link on student page")
+	public void admin_clicks_on_attendance_link_on_student_page() {
+		cmpo.navigationClick("Attendance");
+	}
+
+	@Then("Admin is redirected to Attendance page")
+	public void admin_is_redirected_to_attendance_page() {
+		sd.clickStudentLink();
+	}
+
+	@When("Admin clicks on Logout link on student page")
+	public void admin_clicks_on_logout_link_on_student_page() {
+		cmpo.navigationClick("Logout");
+	}
+
+	@Then("Admin is redirected to Login page")
+	public void admin_is_redirected_to_login_page() {
+	   
+	}
 
 }
