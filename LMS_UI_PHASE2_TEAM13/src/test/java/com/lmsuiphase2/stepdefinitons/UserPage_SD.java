@@ -135,10 +135,10 @@ public class UserPage_SD {
 	   
 	}
 
-	@Given("Admin clicks the edit icon")
-	public void admin_clicks_the_edit_icon() {
-	   
-	}
+//	@Given("Admin clicks the edit icon1")
+//	public void admin_clicks_the_edit_icon1() {
+//	   
+//	}
 
 	@When("Update the fields with valid values from  {string} and {string} and click submit")
 	public void update_the_fields_with_valid_values_from_and_and_click_submit(String string, String string2) {
@@ -170,10 +170,10 @@ public class UserPage_SD {
 	   
 	}
 
-	@When("Admin clicks the delete icon")
-	public void admin_clicks_the_delete_icon() {
-	
-	}
+//	@When("Admin clicks the delete icon")
+//	public void admin_clicks_the_delete_icon() {
+//	
+//	}
 
 	@Then("Alert appears with yes and No option on userpage")
 	public void alert_appears_with_yes_and_no_option_on_userpage() {

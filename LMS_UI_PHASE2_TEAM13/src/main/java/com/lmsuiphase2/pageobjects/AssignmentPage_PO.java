@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -98,7 +99,8 @@ public class AssignmentPage_PO {
 	public
 	WebElement multiSelect_Checkbox;
 	
-	
+	@FindBy(xpath = "//div[text()='Assignment Name']//div[@class='table-header-sort']/i")
+	WebElement assignmentName_SortBtn;
 	
 	
 	
@@ -155,6 +157,41 @@ public class AssignmentPage_PO {
 	@FindBy(xpath="//div[@class='oxd-assignment-file5-input']")
 	WebElement assignmentFile5_TextBox;
 	
+@FindBy (id="pageno")
+	public
+	WebElement pageNo;
+
+	@FindBy (id="pagefirst")
+	public
+	WebElement pageFirst_Link;
+
+	@FindBy (id="pageprev")
+	public
+	WebElement pagePrev_Link;
+
+	@FindBy (id="pagelast")
+	public
+	WebElement pageLast_Link;
+
+	@FindBy (id="pagenext")
+	public
+	WebElement pageNext_Link;
+
+	@FindBy (id="pageinfo")
+	public
+	WebElement pageInfo_Link;
+	
+	@FindBy (id="entryX")
+	public
+	WebElement entryX;
+
+	@FindBy (id="entryY")
+	public
+	WebElement entryY;
+
+	@FindBy (id="entryZ")
+	public
+	WebElement entryZ;
 	public int winHeight; 
 	public int winWidth;
 	public int xPos;
@@ -387,6 +424,58 @@ public class AssignmentPage_PO {
 		return Msg;
 
 	}
+//Method to check if the alert is present
+	public boolean isAlertPresent() {
+	    try {
+	        driver.switchTo().alert();
+	        return true;
+	    } catch (NoAlertPresentException e) {
+	        return false;
+	    }
+	}
+
+	public boolean isYesBtnInAlertPresent() 
+	{ 
+		try 
+		{ 
+			driver.switchTo().alert().accept();;
+			return true; 
+		}   // try 
+		catch (NoAlertPresentException Ex) 
+		{ 
+			return false; 
+		}   // catch 
+	}
+
+	public boolean isNoBtnInAlertPresent() 
+	{ 
+		try 
+		{ 
+			driver.switchTo().alert().dismiss();
+			return true; 
+		}   // try 
+		catch (NoAlertPresentException Ex) 
+		{ 
+			return false; 
+		}   // catch 
+	}
+
+	public void selectCheckBoxInRow()
+	{													
+		List<WebElement> rows = driver.findElements(By.xpath("/tbody/tr"));
+		for(int i =0;i<rows.size();i++)
+		{
+			WebElement singleCheckbox = driver.findElement(By.xpath("/tbody/tr["+i+"]/td[1]"));
+			singleCheckbox.click();
+		}
+	}
+
+	public boolean isAssignmentNameSortIconVisible() {
+
+		return assignmentName_SortBtn.isDisplayed();	
+	}
+
+
 
 }
 	

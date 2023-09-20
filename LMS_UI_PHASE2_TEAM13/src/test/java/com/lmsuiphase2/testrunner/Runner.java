@@ -13,16 +13,10 @@ public class Runner {
 					"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 					"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
 			monochrome=false,  //console output color
-			features = "src/test/resources/feature", //location of feature files
-			glue= {"com.dsalgoproject.apphooks","com.dsalgoproject.stepdefinitions"} )
+			features = "src/test/resources/Features", //location of feature files
+			glue= {"com.lmsuiphase2.apphooks","com.lmsuiphase2.stepdefinitions"} )
 
-	public class RunnerFile extends AbstractTestNGCucumberTests{
-		@Override
-	    @DataProvider(parallel = false)
-	    public Object[][] scenarios() {
-					
-			return super.scenarios();
-	    }
+	public class RunnerFile {
 
 	}
 
