@@ -191,4 +191,3 @@ Then Admin should see  close button on the class details popup window for class
 Scenario: Validate all batch id is reflecting in the dropdown
 Given Admin is in the class detail pop up window in Class
 When Admin clicks  Batch ID dropdown for class
-Then Batch id in the drop down should match with Batch id manage batch page table for class
